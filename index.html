@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
+<title>Pain Management &amp; Analgesics — NCLEX Practice Test</title>
+<style>
+  html{color-scheme:light only}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:rgba(139,42,102,.15)}
+  button{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-appearance:none;appearance:none}
+  html,body{margin:0;background:#ffffff !important;color:#111111 !important;font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-text-size-adjust:100%}
+  body{line-height:1.5}
+  .wrap{max-width:640px;margin:0 auto;padding:20px 18px 60px;background:#ffffff;color:#111111}
+  h1,h2,h3,p,li,span,div,button{color:#111111}
+
+  header h1{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:1.5rem;line-height:1.2;margin:0 0 6px;color:#111111}
+  header p{margin:0;color:#333333;font-size:.95rem}
+
+  .bubbles{display:grid;grid-template-columns:repeat(15,1fr);gap:5px;margin:18px 0 22px}
+  .bubbles span{display:block;aspect-ratio:1;border-radius:50%;border:1.5px solid #bbbbbb;background:#ffffff}
+  .bubbles span.cur{border-color:#8b2a66;box-shadow:0 0 0 2px #f0cfe1}
+  .bubbles span.ok{background:#1f7a3f;border-color:#1f7a3f}
+  .bubbles span.bad{background:#a8322b;border-color:#a8322b}
+
+  .meta{display:flex;justify-content:space-between;align-items:baseline;font-size:.9rem;color:#333333;margin-bottom:8px}
+  .meta b{color:#8b2a66;font-weight:700}
+  .sata{display:inline-block;background:#f7e4ee;color:#6e1f52;padding:2px 8px;border-radius:999px;font-size:.8rem;font-weight:700}
+
+  .stem{font-family:Georgia,"Times New Roman",serif;font-size:1.15rem;line-height:1.5;margin:0 0 18px;color:#000000;font-weight:500}
+
+  .opts{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+  .opt{width:100%;text-align:left;background:#ffffff;border:2px solid #888888;border-radius:10px;padding:12px 14px 12px 44px;font:inherit;font-size:1rem;color:#111111;position:relative;cursor:pointer;line-height:1.4}
+  .opt:focus-visible{outline:3px solid #f0cfe1;outline-offset:1px}
+  .opt::before{content:"";position:absolute;left:14px;top:14px;width:18px;height:18px;border:2px solid #555555;border-radius:50%;background:#ffffff}
+  .opt.box::before{border-radius:4px}
+  .opt.sel{border-color:#8b2a66;background:#f7e4ee;color:#111111}
+  .opt.sel::before{background:#8b2a66;border-color:#8b2a66;box-shadow:inset 0 0 0 3px #fff}
+  .opt.right{border-color:#1f7a3f;background:#e4f3e8;color:#111111}
+  .opt.right::before{background:#1f7a3f;border-color:#1f7a3f;box-shadow:inset 0 0 0 3px #fff}
+  .opt.wrong{border-color:#a8322b;background:#fbe7e4;color:#111111}
+  .opt.wrong::before{background:#a8322b;border-color:#a8322b;box-shadow:inset 0 0 0 3px #fff}
+  .opt.missed{border-style:dashed;border-color:#1f7a3f}
+  .opt[disabled]{cursor:default;opacity:1}
+
+  .actions{display:flex;gap:10px;margin-top:18px}
+  .btn{flex:1;font:inherit;font-size:1rem;font-weight:700;padding:13px 16px;border-radius:10px;border:2px solid #8b2a66;background:#8b2a66;color:#ffffff;cursor:pointer}
+  .btn.quiet{background:#ffffff;color:#8b2a66}
+  .btn[disabled]{opacity:.45;cursor:default}
+  .btn:focus-visible{outline:3px solid #f0cfe1}
+
+  .feedback{margin-top:20px;display:none}
+  .feedback.show{display:block}
+  .verdict{font-weight:700;font-size:1.05rem;margin:0 0 12px}
+  .verdict.ok{color:#1f7a3f} .verdict.bad{color:#a8322b}
+  .block{border-left:3px solid #8b2a66;padding:2px 0 2px 14px;margin:0 0 14px}
+  .block h3{margin:0 0 4px;font-size:.85rem;font-weight:700;color:#333333}
+  .block p{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:1.02rem;line-height:1.55;color:#111111}
+  .mnemonic{background:#fff4d6;border-radius:10px;padding:12px 14px}
+  .mnemonic h3{margin:0 0 4px;font-size:.85rem;font-weight:700;color:#6b4400}
+  .mnemonic p{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:1.05rem;line-height:1.45;color:#111111}
+
+  .results{display:none}
+  .results.show{display:block}
+  .score{font-family:Georgia,"Times New Roman",serif;font-size:3.2rem;line-height:1;margin:6px 0 4px;color:#111111}
+  .score small{font-size:1.1rem;color:#333333}
+  .cats{margin:18px 0 22px;border-top:1px solid #cccccc}
+  .cat{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #cccccc;font-size:.95rem}
+  .cat .bar{flex:1;margin:9px 14px 0;height:6px;background:#dddddd;border-radius:3px;overflow:hidden}
+  .cat .bar i{display:block;height:100%;background:#8b2a66}
+  .review{margin:0;padding:0;list-style:none}
+  .review li{padding:12px 0;border-bottom:1px solid #cccccc}
+  .review li .q{font-family:Georgia,"Times New Roman",serif;font-size:1rem;color:#111111}
+  .review li .a{font-size:.92rem;color:#333333;margin-top:4px}
+  .review li.bad .q::before{content:"¹5 ";color:#a8322b;font-weight:700}
+  .review li.ok .q::before{content:"¹3 ";color:#1f7a3f;font-weight:700}
+
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+  .wrap{padding-bottom:110px}
+  #calcBar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:#ffffff;border-top:2px solid #8b2a66;padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:flex;gap:10px}
+  #calcBtn{flex:1;font:inherit;font-size:1.05rem;font-weight:700;padding:13px;border-radius:10px;border:2px solid #8b2a66;background:#ffffff;color:#8b2a66;cursor:pointer}
+  #calcBtn.on{background:#8b2a66;color:#ffffff}
+  #calc{position:fixed;left:0;right:0;bottom:0;z-index:60;background:#ffffff;border-top:2px solid #8b2a66;border-radius:16px 16px 0 0;padding:12px 16px calc(14px + env(safe-area-inset-bottom));box-shadow:0 -4px 16px rgba(0,0,0,.2);display:none;max-width:640px;margin:0 auto}
+  #calc.show{display:block}
+  #calcClose{width:100%;font:inherit;font-size:1rem;font-weight:700;padding:12px;border-radius:10px;border:2px solid #8b2a66;background:#8b2a66;color:#fff;margin-top:8px}
+  #calcOut{width:100%;height:54px;border:1.5px solid #888;border-radius:8px;text-align:right;padding:0 10px;font-size:1.3rem;font-family:Georgia,serif;color:#111;background:#fff;margin-bottom:8px}
+  .keys{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+  .keys button{font:inherit;font-size:1.25rem;padding:14px 0;border-radius:8px;border:1.5px solid #bbb;background:#fff;color:#111;cursor:pointer}
+  .keys button.op{background:#f7e4ee;border-color:#8b2a66;color:#6e1f52;font-weight:700}
+  .keys button.eq{background:#8b2a66;border-color:#8b2a66;color:#fff;font-weight:700}
+
+  #landing{background:#f9c9d3;border:2px solid #8b2a66;border-radius:14px;padding:0;overflow:hidden;color:#6e1f52;margin-top:4px}
+  #landing .top{display:grid;grid-template-columns:1fr 1.4fr;border-bottom:2px solid #8b2a66}
+  #landing .brand{padding:16px 14px;border-right:2px solid #8b2a66}
+  #landing .script{font-family:"Dancing Script","Brush Script MT",cursive;font-size:2.1rem;line-height:1;color:#8b2a66;font-weight:700;display:block}
+  #landing .caps{font-family:Montserrat,-apple-system,"Segoe UI",sans-serif;font-weight:800;letter-spacing:.12em;font-size:1rem;color:#8b2a66;display:block;margin-top:2px}
+  #landing .fields{display:flex;flex-direction:column}
+  #landing .field{flex:1;display:flex;align-items:center;gap:8px;padding:10px 14px;font-family:Montserrat,sans-serif;font-weight:800;font-size:.72rem;letter-spacing:.1em;color:#8b2a66;border-bottom:2px solid #8b2a66}
+  #landing .field:last-child{border-bottom:0}
+  #landing .field i{flex:1;border-bottom:1.5px solid #8b2a66;height:1px;transform:translateY(4px)}
+  #landing .field em{font-style:normal;font-family:Georgia,serif;font-weight:400;letter-spacing:0;font-size:.95rem;color:#6e1f52;flex:1;border-bottom:1.5px solid #8b2a66;padding-bottom:1px}
+  #landing .cells{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:2px solid #8b2a66}
+  #landing .cell{padding:10px 8px 12px;border-right:2px solid #8b2a66;text-align:center}
+  #landing .cell:last-child{border-right:0}
+  #landing .cell h4{margin:0 0 4px;font-family:Montserrat,sans-serif;font-weight:800;font-size:.68rem;letter-spacing:.1em;color:#8b2a66}
+  #landing .cell p{margin:0;font-family:Georgia,serif;font-size:.95rem;color:#6e1f52;line-height:1.3}
+  #landing .choose{padding:16px 14px 6px;text-align:center}
+  #landing .choose h4{margin:0 0 12px;font-family:Montserrat,sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.14em;color:#8b2a66}
+  .versions{display:grid;gap:10px;padding:0 14px 14px}
+  .ver{display:flex;align-items:center;justify-content:space-between;text-align:left;font:inherit;padding:16px 18px;border-radius:12px;border:2px solid #8b2a66;background:#ffffff;color:#6e1f52;cursor:pointer;box-shadow:0 2px 0 #8b2a66}
+  .ver b{font-family:Montserrat,sans-serif;font-weight:800;letter-spacing:.06em;font-size:1.05rem;color:#8b2a66}
+  .ver span{font-family:Georgia,serif;font-size:.9rem;color:#6e1f52;text-align:right;max-width:55%}
+  .ver:active{background:#f7e4ee}
+  #landing .notes{padding:12px 14px 16px;border-top:2px solid #8b2a66}
+  #landing .notes h4{margin:0 0 8px;font-family:Montserrat,sans-serif;font-weight:800;font-size:.72rem;letter-spacing:.12em;color:#8b2a66}
+  #landing .notes p{margin:0;font-family:Georgia,serif;font-size:.92rem;color:#6e1f52;line-height:1.75;background:repeating-linear-gradient(to bottom,transparent 0,transparent calc(1.75em - 1.5px),#8b2a66 calc(1.75em - 1.5px),#8b2a66 1.75em);padding-bottom:2px}
+  #landing .cad{display:block;margin:6px auto 0;width:44px;height:44px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Pain Management &amp; Analgesics</h1>
+    <p>30 NCLEX-style items · Analgesics (Ch. 10), Anti-inflammatory &amp; Antigout (Ch. 44), Anesthetics (Ch. 11)</p>
+  </header>
+
+  <div class="bubbles" id="bubbles" aria-hidden="true"></div>
+
+  <section id="landing">
+    <div class="top">
+      <div class="brand"><span class="script">Pharmacology</span><span class="caps">PRACTICE TEST</span></div>
+      <div class="fields">
+        <div class="field">TOPIC: <em>Pain Management &amp; Analgesics</em></div>
+        <div class="field">CHAPTERS: <em>10 · 11 · 44</em></div>
+      </div>
+    </div>
+    <div class="cells">
+      <div class="cell"><h4>QUESTIONS</h4><p>30 per version<br>NCLEX-style + SATA</p></div>
+      <div class="cell"><h4>FEEDBACK</h4><p>Rationale &amp; mnemonic after every item</p></div>
+      <div class="cell"><h4>TOOLS</h4><p>Calculator · retry missed · practice similar</p></div>
+    </div>
+    <div class="choose">
+      <h4>SELECT A VERSION</h4>
+    </div>
+    <div class="versions">
+      <button class="ver" data-set="A"><b>VERSION A</b><span>Core practice set</span></button>
+      <button class="ver" data-set="B"><b>VERSION B</b><span>Same concepts, new scenarios</span></button>
+      <button class="ver" data-set="C"><b>VERSION C</b><span>Same concepts, new scenarios</span></button>
+    </div>
+    <div class="notes">
+      <h4>NOTES:</h4>
+      <p>All three versions cover the same 30 concepts in the same order. After any version, "Practice similar questions" pulls the matching items from the next version for everything you missed.</p>
+      <svg class="cad" viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="#8b2a66" stroke-width="3" stroke-linecap="round"><line x1="32" y1="10" x2="32" y2="58"/><path d="M22 14c0-4 20-4 20 0s-20 4-20 8 20 4 20 8-20 4-20 8 20 4 20 8"/><path d="M32 10c-4-4-10-4-14 0"/><path d="M32 10c4-4 10-4 14 0"/></g><circle cx="32" cy="7" r="3" fill="#8b2a66"/></svg>
+    </div>
+  </section>
+
+  <main id="quiz" style="display:none">
+    <div class="meta"><span>Question <b id="qnum">1</b> of 30</span><span id="qcat"></span></div>
+    <p id="modeTag" style="margin:0 0 6px;font-size:.85rem;font-weight:700;color:#8b2a66"></p>
+    <p class="stem" id="stem"></p>
+    <ul class="opts" id="opts"></ul>
+    <div class="actions">
+      <button class="btn" id="submit" disabled>Check answer</button>
+      <button class="btn quiet" id="next" style="display:none">Next question</button>
+    </div>
+    <section class="feedback" id="feedback" aria-live="polite">
+      <p class="verdict" id="verdict"></p>
+      <div class="block"><h3>Rationale</h3><p id="rationale"></p></div>
+      <div class="mnemonic"><h3>Mnemonic</h3><p id="mnemonic"></p></div>
+    </section>
+  </main>
+
+  <section class="results" id="results">
+    <p class="meta" style="margin:0">Your score</p>
+    <div class="score"><span id="scoreNum"></span><small> / 30</small></div>
+    <p id="scoreNote" style="margin:0;color:#333333"></p>
+    <div class="cats" id="cats"></div>
+    <p id="similarNote" style="margin:0 0 10px;font-size:.95rem;color:#111111">Want more practice on what you missed? "Practice similar questions" gives you a new question on each concept you got wrong, in the same style.</p>
+    <div class="actions" style="margin:0 0 10px"><button class="btn" id="similar">Practice similar questions</button></div>
+    <div class="actions" style="margin:0 0 10px"><button class="btn quiet" id="retake">Retake this version</button><button class="btn quiet" id="missedOnly">Retry missed only</button></div>
+    <div class="actions" style="margin:0 0 22px"><button class="btn quiet" id="backHome">Choose another version</button></div>
+    <h2 style="font-family:Georgia,serif;font-weight:700;font-size:1.2rem;margin:0 0 6px;color:#111111">Review</h2>
+    <ul class="review" id="review"></ul>
+  </section>
+</div>
+
+<script>
+const Q = [
+{c:"Nonopioids",s:"A client with rheumatoid arthritis takes acetaminophen and reports that the joint pain eases but the swelling never improves. Which explanation by the nurse is most accurate?",
+ o:["Acetaminophen has little to no anti-inflammatory effect; it relieves pain and fever but not swelling.","The dose is too low to reach the inflamed joints.","Acetaminophen only works for inflammation when combined with an opioid.","Swelling from arthritis cannot be treated with any oral medication."],
+ a:[0],r:"Acetaminophen inhibits prostaglandin synthesis peripherally and is analgesic and antipyretic, but unlike NSAIDs it has little to no anti-inflammatory activity. That distinction, not dose, explains why pain improves while swelling persists.",
+ m:"Tylenol Takes down Temp and pain — but not the swelling."},
+{c:"Nonopioids",s:"The nurse reviews a client's history before administering acetaminophen. Which findings would prompt the nurse to question the order? Select all that apply.",
+ o:["Hepatic failure","G6PD deficiency","Documented acetaminophen allergy","History of peptic ulcer disease","Mild seasonal asthma"],
+ a:[0,1,2],r:"Contraindications to acetaminophen are liver dysfunction/failure, G6PD deficiency, and known allergy. Peptic ulcer disease and asthma are concerns with NSAIDs, not acetaminophen — acetaminophen is often the preferred alternative for those clients.",
+ m:"Tylenol trips on Liver, G6PD, and aLlergy — the ulcer and asthma belong to NSAIDs."},
+{c:"NSAIDs",s:"A nurse is teaching a client starting long-term ibuprofen. Which adverse effects should the client be taught to watch for? Select all that apply.",
+ o:["Decreased urine output or ankle swelling","Black or bloody stools","Chest pain or one-sided weakness","Easy bruising or prolonged bleeding","Slow heart rate below 50","Elevated blood glucose"],
+ a:[0,1,2,3],r:"The class adverse effects are nephrotoxicity, stomach bleeding/ulcer, asthma/allergy cross-reaction, increased cardiovascular risk (MI/stroke), and decreased platelet aggregation. Bradycardia and hyperglycemia are not NSAID effects.",
+ m:"N-S-A-I-D: Nephrotoxicity, Stomach bleed, Asthma/Allergy, Increased CV risk, Decreased platelets."},
+{c:"NSAIDs",s:"A client with a documented aspirin allergy is prescribed naproxen for a sprained ankle. What is the nurse's best action?",
+ o:["Administer the naproxen; it is a different drug class from aspirin.","Hold the naproxen and clarify the order because of NSAID cross-reactivity.","Give half the dose and monitor for a reaction.","Premedicate with an antihistamine, then administer."],
+ a:[1],r:"A documented aspirin allergy means other NSAIDs should not be given because of cross-reactivity. Reducing the dose or premedicating does not remove the risk; the order needs clarification.",
+ m:"Allergic to Aspirin? All NSAIDs are off the table."},
+{c:"NSAIDs",s:"A client is admitted with severe salicylate toxicity: temperature 103°F, confusion, and metabolic acidosis. Which interventions does the nurse anticipate? Select all that apply.",
+ o:["Sodium bicarbonate IV","IV fluids for dehydration and electrolytes","Activated charcoal or gastric lavage","Hemodialysis","Naloxone IV","Acetylcysteine IV"],
+ a:[0,1,2,3],r:"Salicylate toxicity is a medical emergency managed with activated charcoal/gastric lavage, hemodialysis, IV fluids, sodium bicarbonate (reverses acidosis and promotes excretion), and tepid cooling. Naloxone reverses opioids; acetylcysteine is for acetaminophen.",
+ m:"Aspirin overdose: Bicarb, Fluids, Charcoal, Dialysis — no antidote, just get it out."},
+{c:"NSAIDs",s:"A client with hypertension and a prior MI asks the nurse if it is safe to take daily meloxicam for arthritis. Which statement reflects the FDA black box warning?",
+ o:["NSAIDs are safe for the heart as long as they are taken with food.","The risk of heart attack and stroke rises the longer NSAIDs are used and is higher with existing cardiovascular disease.","Only aspirin carries a cardiovascular warning; other NSAIDs do not.","The cardiovascular risk applies only to clients over age 80."],
+ a:[1],r:"The NSAID black box warning states an increased risk of serious cardiovascular events (MI, stroke) that rises with duration of use, with even greater risk in clients who have cardiovascular disease or risk factors.",
+ m:"Longer on NSAIDs = Louder heart warning."},
+{c:"NSAIDs",s:"A client taking daily aspirin reports also using several herbal supplements. Which should the nurse flag as increasing bleeding risk? Select all that apply.",
+ o:["Feverfew","Garlic","Ginger","Ginkgo","Melatonin"],
+ a:[0,1,2,3],r:"Feverfew, garlic, ginger, and ginkgo all increase bleeding risk when combined with aspirin/NSAIDs or anticoagulants. Melatonin has no documented bleeding interaction in this framework.",
+ m:"Four Gs bleed: Garlic, Ginger, Ginkgo — and feverfew joins the Gang."},
+{c:"NSAIDs",s:"A postoperative client is prescribed IV ketorolac. Which point should the nurse recognize about this medication?",
+ o:["It can be continued indefinitely for chronic pain.","It is intended for short-term use only.","It is a COX-2 selective agent with minimal GI risk.","It requires two-RN witnessed wasting."],
+ a:[1],r:"Ketorolac is an acetic acid NSAID available IV/IM and is limited to short-term use because of GI bleeding and renal risk. It is nonselective, and it is not a controlled substance.",
+ m:"Ketorolac: Kwik and Kut short."},
+{c:"NSAIDs",s:"A client who is 34 weeks pregnant asks for ibuprofen for a headache. What is the nurse's best response?",
+ o:["Ibuprofen is safe throughout pregnancy at OTC doses.","NSAIDs are contraindicated in the third trimester; acetaminophen is the usual alternative.","Ibuprofen is preferred over acetaminophen during late pregnancy.","Only aspirin is unsafe in pregnancy."],
+ a:[1],r:"Third-trimester pregnancy is a listed contraindication for NSAIDs. Acetaminophen, which lacks the prostaglandin-related fetal and bleeding effects, is the usual alternative.",
+ m:"Third trimester, no NSAIDs — Tylenol instead."},
+{c:"Antigout",s:"A client is started on colchicine for an acute gout flare. Which laboratory value should the nurse monitor most closely?",
+ o:["Serum potassium","White blood cell count","Blood glucose","Serum calcium"],
+ a:[1],r:"Colchicine can cause leukopenia and GI/urinary bleeding. A falling WBC count is the key adverse effect to catch; the other labs are not specific to colchicine.",
+ m:"Colchicine Calms crystals but Cuts the white Count."},
+{c:"Antigout",s:"A client with lymphoma is about to begin chemotherapy and is prescribed allopurinol even though he has never had gout. The nurse understands the purpose is to:",
+ o:["treat the inflammation caused by chemotherapy.","prevent tumor lysis syndrome by reducing uric acid production.","reduce the risk of Stevens-Johnson syndrome from chemotherapy.","suppress nausea during infusions."],
+ a:[1],r:"Allopurinol is a xanthine oxidase inhibitor that decreases uric acid production. Rapid cell breakdown during chemotherapy floods the body with uric acid, so allopurinol is given to prevent tumor lysis syndrome.",
+ m:"Allopurinol Avoids production — before chemo, it Averts tumor lysis."},
+{c:"Antigout",s:"According to the study guide, which drug class is first-line for gout?",
+ o:["Corticosteroids","Opioid agonists","NSAIDs","Anticonvulsants"],
+ a:[2],r:"NSAIDs are first-line for gout and hyperuricemia; allopurinol and colchicine are the second-line antigout agents.",
+ m:"Gout attack — NSAID first, then Allopurinol/Colchicine."},
+{c:"Opioids",s:"Beyond analgesia, for which purposes may an opioid agonist be prescribed? Select all that apply.",
+ o:["Cough suppression","Control of diarrhea","Balanced anesthesia","Lowering blood pressure","Treating depression"],
+ a:[0,1,2],r:"Opioid agonists are indicated for moderate–severe pain and also for cough suppression, antidiarrheal effect, and balanced anesthesia. They are not antihypertensives or antidepressants.",
+ m:"Opioids: Pain, Poop (stops it), Cough, and the OR."},
+{c:"Opioids",s:"The nurse reviews a client's history before giving morphine. Which condition is a listed contraindication rather than a caution?",
+ o:["Morbid obesity","Elevated intracranial pressure","Severe asthma","Pregnancy"],
+ a:[2],r:"Known drug allergy and severe asthma are contraindications. Respiratory insufficiency, elevated ICP, morbid obesity/sleep apnea, paralytic ileus, and pregnancy are 'use with extreme caution' categories.",
+ m:"Severe Asthma Stops the opioid — the rest just Slow you down."},
+{c:"Opioids",s:"A client taking phenelzine, an MAOI, is prescribed an opioid for postoperative pain. What should the nurse anticipate?",
+ o:["Decreased opioid effectiveness","Additive CNS and respiratory depression","Increased urine output","No clinically significant interaction"],
+ a:[1],r:"MAOIs are listed alongside alcohol, antihistamines, barbiturates, and benzodiazepines as agents that produce additive CNS/respiratory depression with opioids.",
+ m:"MAOI + opioid = More Apnea, Oversedation, Impaired arousal."},
+{c:"Opioids",s:"A client with opioid use disorder is found with a respiratory rate of 5/min and pinpoint pupils. A colleague hesitates to give naloxone because it will cause withdrawal. What is the nurse's best response?",
+ o:["Agree to wait and provide rescue breaths instead.","Give a half dose to avoid withdrawal symptoms.","Administer naloxone; airway and breathing come first regardless of withdrawal.","Hold naloxone until the provider arrives."],
+ a:[2],r:"Regardless of the withdrawal it may cause, an antagonist must be given for severe respiratory depression. Airway and breathing take priority; withdrawal is uncomfortable but not fatal, while apnea is.",
+ m:"Withdrawal is miserable; apnea is deadly — Naloxone Nallows breathing."},
+{c:"Opioids",s:"A client prescribed codeine with acetaminophen for a dental extraction asks why the provider did not order a stronger dose when pain persists. Which fact supports the nurse's explanation?",
+ o:["Codeine has a ceiling effect, so higher doses do not add analgesia.","Codeine is not a controlled substance and cannot be increased.","Codeine has no acetaminophen, so it is weak.","Codeine is only used as an antitussive."],
+ a:[0],r:"Codeine is a natural opiate with a ceiling effect; once reached, higher doses add adverse effects (mainly GI upset) without more pain relief. It is often combined with acetaminophen and also used as an antitussive.",
+ m:"Codeine hits the Ceiling — Climb to a stronger opioid instead."},
+{c:"Schedules",s:"Which drugs are classified as Schedule I? Select all that apply.",
+ o:["Heroin","LSD","Hydrocodone","Diazepam","Marijuana (federally)"],
+ a:[0,1,4],r:"Schedule I drugs have high abuse potential and no accepted medical use: ecstasy, heroin, LSD, marijuana (federally), and PCP. Hydrocodone is Schedule III (combination) and diazepam is Schedule IV.",
+ m:"C-I = no medical use: Heroin, LSD, ecstasy, PCP, federal marijuana."},
+{c:"Opioids",s:"A client is switched from oral morphine to a fentanyl transdermal patch. Which nursing action reflects correct understanding of the patch's onset?",
+ o:["Stop the oral morphine the moment the patch is applied.","Continue short-acting opioid coverage for roughly 12–24 hours while the patch reaches therapeutic levels.","Apply two patches for the first day to speed onset.","Apply the patch only when pain is severe."],
+ a:[1],r:"Transdermal fentanyl has a delayed onset of about 12–24 hours, so overlap with the previous opioid is needed. Doubling the patch or using it PRN is unsafe.",
+ m:"Patch is slow to Catch — cover the gap for a day."},
+{c:"Anesthetics",s:"A mechanically ventilated ICU client needs sedation and analgesia but the team wants to avoid respiratory depression and allow quick awakening. Which agent fits this profile?",
+ o:["Ketamine","Dexmedetomidine","Nitrous oxide","Morphine"],
+ a:[1],r:"Dexmedetomidine is an alpha-2 agonist that provides dose-dependent sedation, anxiolysis, and analgesia without respiratory depression, with a short half-life so the client wakes quickly once it is stopped.",
+ m:"Dex Doesn't Drop the breathing — sedation that wakes fast."},
+{c:"Anesthetics",s:"A client who received ketamine for procedural sedation becomes frightened and describes vivid, disturbing images. The nurse recognizes this as:",
+ o:["malignant hyperthermia.","an expected psychomimetic adverse effect of ketamine.","opioid withdrawal.","an allergic reaction requiring epinephrine."],
+ a:[1],r:"Ketamine has rapid onset and few cardiovascular, respiratory, or bowel effects, but its hallmark adverse effect is disturbing psychomimetic reactions including hallucinations.",
+ m:"Ketamine = Krazy dreams."},
+{c:"Anesthetics",s:"A client on continuous propofol for ventilator sedation is also receiving total parenteral nutrition. Which lab should the nurse monitor?",
+ o:["Serum triglycerides","Serum sodium","Hemoglobin A1c","Serum uric acid"],
+ a:[0],r:"Propofol is delivered in a lipid emulsion, so triglycerides should be monitored, especially when combined with TPN. Some states also restrict RN administration — know your scope of practice.",
+ m:"Propofol is a fat-white drip — track the Triglycerides."},
+{c:"Anesthetics",s:"Which statement about nitrous oxide is accurate?",
+ o:["It is the most potent general anesthetic available.","It is the only inhaled gas still used as a general anesthetic and is the weakest.","It is contraindicated for dental procedures.","It is given IV for rapid induction."],
+ a:[1],r:"Nitrous oxide, 'laughing gas,' is the only inhaled gas still used as a general anesthetic. It is the weakest agent and is used mainly for dental procedures or as a supplement to more potent drugs.",
+ m:"Laughing gas: Last of the gases, Least potent."},
+{c:"Anesthetics",s:"Which characteristics make sevoflurane a preferred inhaled agent for pediatric outpatient surgery? Select all that apply.",
+ o:["Rapid onset and elimination","Nonirritating to the airway","Long half-life for extended sedation","Facilitates induction in children","Produces hallucinations"],
+ a:[0,1,3],r:"Sevoflurane is a fluorinated ether with rapid onset and elimination, nonirritating to the airway, which makes it good for outpatient surgery and especially helpful for induction in pediatric clients.",
+ m:"Sevo is Smooth, Swift, and Sweet for kids."},
+{c:"Anesthetics",s:"A client is scheduled for a colonoscopy under moderate (conscious) sedation. Which statement by the client shows correct understanding?",
+ o:["\"I will be completely unconscious and on a breathing machine.\"","\"I'll be relaxed and may not remember it, but I'll still breathe on my own and can respond if spoken to.\"","\"I'll be paralyzed but awake.\"","\"I'll only receive a local anesthetic gel.\""],
+ a:[1],r:"Moderate sedation, usually an IV benzodiazepine or propofol plus an opioid, reduces anxiety and pain sensitivity and often produces amnesia, but preserves the client's own airway and ability to respond to verbal commands.",
+ m:"Moderate sedation: Mellow, Maybe no Memory, but still Managing my own airway."},
+{c:"Neuromuscular blockers",s:"Succinylcholine is planned for rapid-sequence intubation. Which laboratory value must the nurse check before administration?",
+ o:["Serum potassium","Blood glucose","Platelet count","Serum magnesium"],
+ a:[0],r:"Succinylcholine is a depolarizing neuromuscular blocker that mimics acetylcholine and can cause hyperkalemia, so potassium must be checked first. It is also linked to malignant hyperthermia.",
+ m:"Sux spikes K — check the potassium before you push."},
+{c:"Neuromuscular blockers",s:"A client receiving rocuronium during surgery. Which points about neuromuscular blocking drugs guide the nurse's care? Select all that apply.",
+ o:["The client is paralyzed but may be fully conscious.","A sedative or anesthetic must always be given alongside the blocker.","Emergency ventilation equipment must be immediately available.","The drug provides adequate pain relief on its own.","The diaphragm is paralyzed last and recovers first."],
+ a:[0,1,2,4],r:"NMBDs paralyze skeletal muscle, including the diaphragm, without sedation or analgesia — the client is conscious unless an anesthetic is given. Paralysis proceeds fingers/eyes → limbs/neck/trunk → intercostals/diaphragm, recovering in reverse. Mechanical ventilation is required.",
+ m:"Paralyzed, not Pain-free, not Put to sleep — Provide the sedative and Prepare to ventilate."},
+{c:"Neuromuscular blockers",s:"Which medication does the nurse anticipate to reverse a nondepolarizing neuromuscular blocker at the end of surgery?",
+ o:["Naloxone","Neostigmine","Flumazenil","Dantrolene"],
+ a:[1],r:"Anticholinesterase drugs — neostigmine, pyridostigmine, edrophonium — are the antidotes for neuromuscular blocking drugs. Naloxone reverses opioids, flumazenil reverses benzodiazepines, and dantrolene treats malignant hyperthermia.",
+ m:"Neostigmine Nudges the Nerve–muscle back on."},
+{c:"Local anesthetics",s:"A provider orders lidocaine with epinephrine for suturing a scalp laceration. The nurse understands epinephrine is added to:",
+ o:["shorten the anesthetic's duration so the client recovers faster.","prolong the anesthetic effect and decrease bleeding at the site.","prevent the lidocaine from being absorbed systemically at all.","convert the lidocaine into an antiarrhythmic."],
+ a:[1],r:"Epinephrine constricts local vessels, which prolongs lidocaine's effect and reduces bleeding. Separately, when lidocaine is given IV it is reclassified as a sodium channel blocker for ventricular dysrhythmias.",
+ m:"Epi Extends the numb and Ebbs the bleeding."},
+{c:"Assessment",s:"During a PQRST pain assessment the nurse asks, \"On a scale of 0 to 10, how bad is the pain right now?\" Which component is being assessed?",
+ o:["Provocation","Quality","Region","Severity"],
+ a:[3],r:"PQRST stands for Provocation/Palliation, Quality, Region/Radiation, Severity, and Timing. A 0–10 rating measures Severity. The Joint Commission established pain as the '5th vital sign,' making this assessment a standard of care.",
+ m:"P-Q-R-S-T: what Provokes it, its Quality, the Region, how Severe, and its Timing."}
+];
+
+const ALT = [
+{c:"Nonopioids",s:"A client with a swollen, sprained ankle asks whether acetaminophen or ibuprofen would help more with the swelling. Which response by the nurse is correct?",
+ o:["Ibuprofen, because acetaminophen has little to no anti-inflammatory effect.","Acetaminophen, because it is stronger for soft-tissue injuries.","Either one; they work identically.","Neither reduces swelling; only ice can."],
+ a:[0],r:"NSAIDs like ibuprofen are analgesic, antipyretic, and anti-inflammatory. Acetaminophen relieves pain and fever but has little to no anti-inflammatory action, so it will not reduce the swelling.",
+ m:"Swelling? Skip the Tylenol — NSAIDs Nix the inflammation."},
+{c:"Nonopioids",s:"Which clients can safely receive acetaminophen as an alternative to NSAIDs? Select all that apply.",
+ o:["A client with peptic ulcer disease","A client with a documented aspirin allergy","A client with mild asthma","A client with cirrhosis","A client with G6PD deficiency"],
+ a:[0,1,2],r:"Acetaminophen is the go-to alternative for clients who cannot take aspirin/NSAIDs (ulcer disease, NSAID allergy, asthma). It is contraindicated in liver dysfunction, G6PD deficiency, and known allergy.",
+ m:"Tylenol is fine for the Ulcer, Allergy, and Asthma crowd — not the Liver or G6PD."},
+{c:"NSAIDs",s:"A client on long-term naproxen for osteoarthritis is seen in clinic. Which assessments should the nurse prioritize? Select all that apply.",
+ o:["Hemoglobin and hematocrit","BUN and creatinine","Blood pressure and any chest pain or neurologic symptoms","Stool for occult blood","Serum calcium","Thyroid-stimulating hormone"],
+ a:[0,1,2,3],r:"Long-term NSAID monitoring targets the class adverse effects: GI bleeding (Hgb/Hct, occult blood), nephrotoxicity (BUN/creatinine), and cardiovascular risk (BP, MI/stroke symptoms). Calcium and TSH are unrelated.",
+ m:"Follow the NSAID letters: check the Stomach (Hgb), the Nephrons (creatinine), and the Increased CV risk."},
+{c:"NSAIDs",s:"A client reports developing hives after taking ibuprofen last year and asks if aspirin would be a safer choice for headaches. What is the nurse's best response?",
+ o:["\"Yes, aspirin is a different chemical and will be safe.\"","\"No — an allergy to one NSAID means others, including aspirin, may cross-react. Acetaminophen is safer for you.\"","\"Aspirin is safe if you take it with food.\"","\"Take a lower dose of aspirin to test for a reaction.\""],
+ a:[1],r:"NSAID allergy cross-reacts across the class, including aspirin. Acetaminophen is the recommended alternative; testing with a smaller dose is unsafe.",
+ m:"One NSAID rash = the whole class is trash (for you)."},
+{c:"NSAIDs",s:"A client on high-dose aspirin for rheumatoid arthritis calls the clinic. Which reported symptoms indicate early salicylism? Select all that apply.",
+ o:["Ringing in the ears","Trouble hearing","Dizziness","Headache","Pinpoint pupils","Very slow heart rate"],
+ a:[0,1,2,3],r:"Early salicylate toxicity presents with tinnitus, hearing loss, dizziness, and headache, progressing to sweating, fever, acidosis, and coma if untreated. Pinpoint pupils and bradycardia point to opioids, not aspirin.",
+ m:"Ringing, deaf, dizzy, aching head — Aspirin's early Alarm."},
+{c:"NSAIDs",s:"Which client is at the greatest risk from the cardiovascular effects described in the NSAID black box warning?",
+ o:["A 22-year-old taking ibuprofen for two days after a dental extraction","A 68-year-old with a prior stroke taking naproxen daily for three years","A 40-year-old taking one dose of ketorolac postoperatively","A 30-year-old with no cardiac history using aspirin occasionally"],
+ a:[1],r:"The black box risk rises with duration of use and is greatest in clients with existing cardiovascular disease or risk factors. A three-year daily user with prior stroke fits both criteria.",
+ m:"Older, longer, prior event — the warning gets louder."},
+{c:"NSAIDs",s:"A client taking warfarin lists the supplements she takes. Which should the nurse tell her to report to the provider because of increased bleeding risk? Select all that apply.",
+ o:["Glucosamine/chondroitin","Feverfew","Ginkgo","Garlic","Vitamin B12","Probiotics"],
+ a:[0,1,2,3],r:"Glucosamine/chondroitin enhances warfarin's effect, and feverfew, ginkgo, garlic, and ginger all increase bleeding risk with anticoagulants or NSAIDs. B12 and probiotics do not.",
+ m:"Glucosamine, Feverfew, Ginkgo, Garlic — Guard the INR."},
+{c:"NSAIDs",s:"A provider orders IV ketorolac every 6 hours for three weeks for a client with chronic back pain. What is the nurse's best action?",
+ o:["Administer as ordered.","Question the order; ketorolac is intended only for short-term use.","Give it orally instead of IV.","Add misoprostol and administer."],
+ a:[1],r:"Ketorolac is limited to short-term use because of significant GI bleeding and renal risk. A three-week course, especially for chronic pain, warrants clarification.",
+ m:"Ketorolac: Keep it short."},
+{c:"NSAIDs",s:"A client at 36 weeks' gestation asks the nurse which OTC medication is most appropriate for a tension headache. Which does the nurse recommend?",
+ o:["Ibuprofen","Naproxen","Acetaminophen","Aspirin"],
+ a:[2],r:"All NSAIDs, including aspirin, are contraindicated in the third trimester. Acetaminophen is the appropriate alternative.",
+ m:"Pregnant and hurting? Tylenol only past the third trimester line."},
+{c:"Antigout",s:"A client taking colchicine reports pink-tinged urine and bleeding gums. What is the nurse's priority action?",
+ o:["Reassure the client this is expected and continue the drug.","Hold the dose and notify the provider; colchicine can cause GI/urinary bleeding and leukopenia.","Encourage more fluids and reassess tomorrow.","Advise taking the dose with a full meal."],
+ a:[1],r:"Colchicine's adverse effects include leukopenia and GI/urinary bleeding. Bleeding is a reason to hold and report, not to continue.",
+ m:"Colchicine Calms crystals but can Cause bleeding — Call it in."},
+{c:"Antigout",s:"A client taking allopurinol develops a spreading rash with blisters and painful mouth sores. What should the nurse do first?",
+ o:["Apply hydrocortisone cream and continue therapy.","Stop the allopurinol and notify the provider immediately for possible Stevens-Johnson syndrome.","Give diphenhydramine and reassess in 24 hours.","Increase fluids to flush uric acid."],
+ a:[1],r:"Blistering rash with mucosal involvement in a client on allopurinol suggests Stevens-Johnson syndrome or toxic epidermal necrolysis, both life-threatening. The drug must be stopped and the provider notified at once.",
+ m:"Allopurinol + blisters = Stop and Shout (SJS)."},
+{c:"Antigout",s:"A client with a first gout flare and no contraindications asks which medication will likely be tried first. Which does the nurse expect?",
+ o:["Allopurinol","Indomethacin","Colchicine","Prednisone"],
+ a:[1],r:"NSAIDs such as indomethacin are first-line for gout. Allopurinol and colchicine are the second-line antigout drugs.",
+ m:"Gout: Inflammation first, so NSAIDs first."},
+{c:"Opioids",s:"The nurse reviews orders and sees opioids prescribed for purposes other than pain. Which orders are consistent with accepted opioid indications? Select all that apply.",
+ o:["Codeine syrup for a persistent cough","An opioid antidiarrheal for severe diarrhea","Fentanyl as part of balanced anesthesia in the OR","Morphine to lower blood pressure in hypertension","Oxycodone for insomnia"],
+ a:[0,1,2],r:"Opioids are indicated for moderate–severe pain, cough suppression, diarrhea control, and balanced anesthesia. They are not treatments for hypertension or insomnia.",
+ m:"Cough, Colon, Cutting (surgery) — opioids' Other jobs."},
+{c:"Opioids",s:"Which client requires the nurse to use extreme caution when administering an opioid?",
+ o:["A client with well-controlled hypothyroidism","A client with morbid obesity and obstructive sleep apnea","A client with seasonal allergies","A client with a fully healed wrist fracture"],
+ a:[1],r:"Morbid obesity/sleep apnea, respiratory insufficiency, elevated ICP, paralytic ileus, and pregnancy are 'extreme caution' categories because opioids depress respiration.",
+ m:"Sleep apnea + opioid = Stop and Sedation-check."},
+{c:"Opioids",s:"A client prescribed hydrocodone/acetaminophen mentions having two glasses of wine every evening. Which teaching is the priority?",
+ o:["Wine is fine as long as it is taken two hours after the dose.","Avoid alcohol; combining it with an opioid causes additive CNS and respiratory depression.","Switch to beer, which has less interaction.","Alcohol only interacts with the acetaminophen, not the opioid."],
+ a:[1],r:"Alcohol, antihistamines, barbiturates, benzodiazepines, and MAOIs all produce additive CNS/respiratory depression with opioids. Alcohol also adds hepatotoxicity risk with the acetaminophen component.",
+ m:"Opioid + alcohol = double depression (breathing and brain)."},
+{c:"Opioids",s:"After receiving naloxone, a client becomes agitated, diaphoretic, and vomits. Which interpretation by the nurse is correct?",
+ o:["Naloxone has failed and a different antidote is needed.","These are expected withdrawal symptoms; continue to monitor breathing closely since naloxone wears off before the opioid.","The client is having an allergic reaction to naloxone.","The opioid overdose is worsening."],
+ a:[1],r:"Naloxone precipitates withdrawal (agitation, sweating, vomiting) — uncomfortable but expected. Because its half-life is shorter than most opioids, the priority remains watching for recurrent respiratory depression.",
+ m:"Miserable but breathing — that's naloxone working. Watch for the rebound."},
+{c:"Opioids",s:"Which opioid agonist has a ceiling effect on analgesia?",
+ o:["Morphine","Codeine","Fentanyl","Hydromorphone"],
+ a:[1],r:"Mild agonists codeine and hydrocodone have a ceiling effect. Strong agonists (morphine, fentanyl, hydromorphone, oxycodone, methadone) have no true analgesic ceiling, though adverse effects increase with dose.",
+ m:"Mild opioids Max out; strong ones don't stop."},
+{c:"Schedules",s:"Which drugs are classified as Schedule IV controlled substances? Select all that apply.",
+ o:["Diazepam","Alprazolam","Phentermine","Buprenorphine","Oxycodone","Heroin"],
+ a:[0,1,2,3],r:"Schedule IV includes benzodiazepines (diazepam, alprazolam), phentermine, and the mixed agonist-antagonists such as buprenorphine. Oxycodone is Schedule II; heroin is Schedule I.",
+ m:"C-IV = Valium, Xanax, phentermine, and the mixed-up opioids."},
+{c:"Opioids",s:"A client with cancer pain had a fentanyl patch applied 3 hours ago and reports the pain is unchanged. What does the nurse recognize?",
+ o:["The patch is defective and should be replaced.","Transdermal fentanyl takes about 12–24 hours to reach therapeutic levels, so a rescue dose is appropriate now.","The client has developed tolerance.","A second patch should be added."],
+ a:[1],r:"The patch's delayed onset is expected. Breakthrough coverage with a short-acting opioid is used until the patch reaches steady levels; adding patches is dangerous.",
+ m:"Patch takes a day to Catch — bridge with a rescue dose."},
+{c:"Anesthetics",s:"Which description best matches dexmedetomidine (Precedex)?",
+ o:["An inhaled ether used for pediatric induction","An alpha-2 adrenergic agonist providing sedation and analgesia without respiratory depression","A dissociative agent known for hallucinations","A depolarizing neuromuscular blocker"],
+ a:[1],r:"Dexmedetomidine is an alpha-2 agonist producing dose-dependent sedation, reduced anxiety, and analgesia without respiratory depression, with a short half-life; it is used for procedural sedation and ventilated ICU clients.",
+ m:"Dex = Drowsy, not Depressed breathing."},
+{c:"Anesthetics",s:"Which anesthetic agent has a low incidence of cardiovascular and respiratory effects but is known for causing hallucinations on emergence?",
+ o:["Propofol","Ketamine","Sevoflurane","Nitrous oxide"],
+ a:[1],r:"Ketamine has rapid onset with minimal cardiovascular, respiratory, or bowel effects, but disturbing psychomimetic reactions such as hallucinations are its signature adverse effect.",
+ m:"Ketamine keeps the heart and lungs Kalm but the mind Krazy."},
+{c:"Anesthetics",s:"An RN in the procedure suite is asked to administer propofol for induction. What is the nurse's first consideration?",
+ o:["Whether the client has eaten in the last 2 hours","Whether propofol administration for induction is within the RN's scope of practice in that state","Whether the client prefers IV or inhaled anesthesia","Whether the pharmacy has enough stock"],
+ a:[1],r:"Some states restrict RN administration of propofol for anesthesia induction. Knowing the Nurse Practice Act and scope of practice comes first; propofol also requires monitoring of triglycerides if given long-term with TPN.",
+ m:"Propofol: Prove it's in your Practice act before you Push."},
+{c:"Anesthetics",s:"A client scheduled for a dental procedure asks what \"laughing gas\" is. Which explanation is accurate?",
+ o:["\"It is nitrous oxide, a mild inhaled anesthetic often used for dental work.\"","\"It is sevoflurane, a very strong anesthetic.\"","\"It is an IV sedative that makes you laugh.\"","\"It paralyzes your muscles so you can't move.\""],
+ a:[0],r:"Nitrous oxide is the only inhaled gas still used as a general anesthetic; it is the weakest agent and is commonly used for dental procedures or to supplement stronger drugs.",
+ m:"Laughing gas is Light — the weakest of the gases."},
+{c:"Anesthetics",s:"Which agents are inhaled general anesthetics? Select all that apply.",
+ o:["Sevoflurane","Nitrous oxide","Propofol","Ketamine","Dexmedetomidine"],
+ a:[0,1],r:"Sevoflurane (a fluorinated ether) and nitrous oxide are inhaled. Propofol, ketamine, and dexmedetomidine are given parenterally.",
+ m:"You breathe in Sevo and the laughing gas; the rest go in the vein."},
+{c:"Anesthetics",s:"Which medication combination is typical for moderate (conscious) sedation during an endoscopy?",
+ o:["Succinylcholine and sevoflurane","Midazolam and fentanyl","Dantrolene and lidocaine","Naloxone and flumazenil"],
+ a:[1],r:"Moderate sedation typically pairs an IV benzodiazepine (midazolam) or propofol with an opioid (fentanyl or morphine). The client keeps their airway and can respond to verbal commands.",
+ m:"Mellow (midazolam) + Fentanyl = Moderate sedation."},
+{c:"Neuromuscular blockers",s:"Succinylcholine is ordered for intubation. Which preoperative potassium level would prompt the nurse to notify anesthesia before the drug is given?",
+ o:["3.8 mEq/L","4.2 mEq/L","4.6 mEq/L","5.8 mEq/L"],
+ a:[3],r:"Succinylcholine can cause hyperkalemia. A potassium of 5.8 mEq/L is already elevated, so administering the drug could push it to a dangerous level; anesthesia must be informed.",
+ m:"High K + Sux = Cardiac Kaos — report it."},
+{c:"Neuromuscular blockers",s:"A nurse is caring for an intubated client receiving rocuronium. Which actions are appropriate? Select all that apply.",
+ o:["Explain all procedures aloud before performing them","Verify that a sedative and analgesic are ordered and infusing","Keep ventilator alarms on and emergency airway equipment at the bedside","Assess for pain using vital signs and other physiologic cues","Assume the client is unaware of the surroundings","Allow the client to breathe on their own for short trials"],
+ a:[0,1,2,3],r:"Neuromuscular blockers paralyze without sedation or analgesia, so the client may be fully aware. Talk to them, ensure sedation/analgesia, monitor physiologic signs of pain, and never let ventilation lapse.",
+ m:"Paralyzed ≠ Peaceful: talk, sedate, ventilate."},
+{c:"Neuromuscular blockers",s:"A client's chart notes a family history of malignant hyperthermia. Which drug should the nurse expect to be avoided during anesthesia?",
+ o:["Propofol","Succinylcholine","Dexmedetomidine","Ketamine"],
+ a:[1],r:"Malignant hyperthermia is triggered by volatile inhaled anesthetics and succinylcholine, so a history of it is a contraindication. Dantrolene is the treatment if it occurs.",
+ m:"MH history? No Sux, no volatile gas — Dantrolene on standby."},
+{c:"Local anesthetics",s:"A continuous IV lidocaine infusion is ordered for a client on the cardiac unit. The nurse recognizes the purpose is to:",
+ o:["provide regional anesthesia for chest pain.","treat ventricular dysrhythmias as a sodium channel blocker.","reduce bleeding at IV sites.","sedate the client for a procedure."],
+ a:[1],r:"Lidocaine given IV is reclassified as a sodium channel blocker used to treat ventricular dysrhythmias. Its local anesthetic role uses infiltration or topical routes, often with epinephrine.",
+ m:"Lidocaine in the vein = Rhythm Rescue, not numbing."},
+{c:"Assessment",s:"During a PQRST pain assessment the nurse asks, \"Does anything make the pain better or worse?\" Which component is being assessed?",
+ o:["Provocation/Palliation","Quality","Region/Radiation","Timing"],
+ a:[0],r:"P in PQRST stands for Provocation/Palliation — what triggers or relieves the pain. Quality describes what it feels like, Region/Radiation is location, Severity is the 0–10 rating, and Timing is onset/duration/pattern.",
+ m:"P = what Provokes or Palliates."}
+];
+
+const VC = [
+{c:"Nonopioids",s:"A nurse compares acetaminophen with NSAIDs during a medication class. Which property is present in NSAIDs but largely absent in acetaminophen?",
+ o:["Analgesic effect","Antipyretic effect","Anti-inflammatory effect","Oral availability"],
+ a:[2],r:"Both drugs relieve pain and fever. NSAIDs additionally reduce inflammation; acetaminophen has little to no anti-inflammatory effect, which is the key distinction between the two.",
+ m:"Tylenol treats Temp and Twinges, not the swelling."},
+{c:"Nonopioids",s:"The nurse is reviewing home medications with a client who takes acetaminophen daily. Which findings require follow-up with the provider? Select all that apply.",
+ o:["Reports drinking 4–5 alcoholic drinks daily","Also takes Norco (hydrocodone/acetaminophen) for back pain","Has a history of hepatitis C with cirrhosis","Takes a daily multivitamin","Exercises three times a week"],
+ a:[0,1,2],r:"Alcohol and other hepatotoxic exposures increase acetaminophen liver risk; combination products add hidden acetaminophen toward the daily maximum; and liver disease lowers the safe ceiling to 2,000 mg/day. A multivitamin and exercise are not concerns.",
+ m:"Alcohol, hidden Tylenol, and a sick liver — Triple Threat to the liver."},
+{c:"NSAIDs",s:"A client taking daily diclofenac reports new symptoms. Which should the nurse teach the client to report immediately? Select all that apply.",
+ o:["Coffee-ground emesis","Sudden weight gain with swollen legs and less urine","Wheezing after a dose","Slurred speech and facial droop","Mild heartburn relieved by food","Occasional yawning"],
+ a:[0,1,2,3],r:"Coffee-ground emesis signals GI bleeding, edema with decreased urine suggests nephrotoxicity or fluid retention, wheezing can indicate NSAID hypersensitivity, and stroke symptoms reflect the cardiovascular black box risk. Mild heartburn is expected and managed with food.",
+ m:"NSAID red flags: Bleed, Kidney, Wheeze, Stroke."},
+{c:"NSAIDs",s:"A client's allergy band lists \"aspirin — anaphylaxis.\" The provider orders celecoxib. What is the nurse's most appropriate action?",
+ o:["Give it; celecoxib is COX-2 selective and structurally different.","Contact the provider; NSAID allergy may cross-react even with COX-2 inhibitors.","Give it with an antihistamine.","Give a test dose and observe for 30 minutes."],
+ a:[1],r:"A documented aspirin allergy is a contraindication to other NSAIDs because of cross-reactivity. Celecoxib is still an NSAID; anaphylaxis history makes clarification essential rather than a test dose.",
+ m:"Aspirin anaphylaxis = All NSAIDs are suspect, even the selective ones."},
+{c:"NSAIDs",s:"A teenager is brought in after taking a large number of aspirin tablets. Which findings indicate the toxicity has progressed beyond the early stage? Select all that apply.",
+ o:["Temperature of 104°F","Arterial pH of 7.22","Profuse sweating and dry mucous membranes","Decreasing level of consciousness","Tinnitus only","Pinpoint pupils"],
+ a:[0,1,2,3],r:"Salicylism begins with tinnitus, hearing loss, dizziness, and headache, then progresses to sweating, high fever, acidosis, dehydration, electrolyte imbalance, coma, and respiratory depression. Pinpoint pupils are an opioid sign.",
+ m:"Aspirin overdose gets Hot, Acidic, Dry, and Drowsy."},
+{c:"NSAIDs",s:"A client with heart failure asks to switch from acetaminophen to daily ibuprofen for knee pain. Which teaching point does the nurse emphasize?",
+ o:["Ibuprofen has no effect on the heart.","NSAIDs carry a black box warning for heart attack and stroke, and the risk is higher with existing heart disease and longer use.","The risk only applies to prescription-strength doses.","Aspirin would be a safer daily choice for the knee pain."],
+ a:[1],r:"The FDA black box warning applies to all NSAIDs: increased risk of MI and stroke that rises with duration of use and is greater in clients with cardiovascular disease. Aspirin adds bleeding risk and is not the answer for chronic knee pain.",
+ m:"Heart trouble + daily NSAID = the black box gets bigger."},
+{c:"NSAIDs",s:"A client scheduled for surgery next week takes ibuprofen and several supplements. Which items should the nurse instruct the client to stop before surgery because they raise bleeding risk? Select all that apply.",
+ o:["Ibuprofen","Ginkgo biloba","Garlic capsules","Ginger supplements","Calcium carbonate","Vitamin D"],
+ a:[0,1,2,3],r:"NSAIDs are held about one week before elective surgery, and ginkgo, garlic, ginger (and feverfew) all increase bleeding risk. Calcium and vitamin D do not affect bleeding.",
+ m:"Before the knife: no NSAIDs, no Gs (Ginkgo, Garlic, Ginger)."},
+{c:"NSAIDs",s:"Which route and duration are appropriate for ketorolac?",
+ o:["Oral, long-term for chronic arthritis","IV or IM, short-term only","Transdermal patch, changed every 72 hours","Rectal, continuous for cancer pain"],
+ a:[1],r:"Ketorolac is available IV/IM (and briefly oral) and is restricted to short-term use because of GI bleeding and renal toxicity risk.",
+ m:"Ketorolac: IV, IM, and In-and-out fast."},
+{c:"NSAIDs",s:"A nurse is reviewing a prenatal client's medication list at 30 weeks and sees daily naproxen. What is the nurse's priority action?",
+ o:["Continue; naproxen is safe in pregnancy.","Notify the provider; NSAIDs are contraindicated in the third trimester.","Reduce the dose by half.","Switch to aspirin."],
+ a:[1],r:"Third-trimester pregnancy is a contraindication to NSAIDs, including aspirin. The provider should be notified so an alternative such as acetaminophen can be ordered.",
+ m:"Third trimester: NSAIDs are a No."},
+{c:"Antigout",s:"A client is discharged on a short course of colchicine. Which instruction should the nurse include?",
+ o:["Take on an empty stomach and report any unusual bleeding or signs of infection.","Take with a large meal to speed absorption.","Continue indefinitely to prevent uric acid formation.","Take with an antacid at bedtime."],
+ a:[0],r:"Colchicine is taken on an empty stomach for short-term flare management. Its adverse effects — leukopenia and GI/urinary bleeding — mean clients should report bleeding or infection signs.",
+ m:"Colchicine: empty stomach, watch for bleeding and bugs."},
+{c:"Antigout",s:"Which laboratory finding in a client on long-term allopurinol requires the nurse to notify the provider?",
+ o:["Uric acid 4.5 mg/dL","WBC 1,800/mm³","Sodium 140 mEq/L","Platelets 250,000/mm³"],
+ a:[1],r:"Allopurinol can cause agranulocytosis and aplastic anemia, so a WBC of 1,800 is a serious adverse effect. A uric acid of 4.5 shows the drug is working; sodium and platelets are normal.",
+ m:"Allopurinol Attacks the marrow — Alert on low counts."},
+{c:"Antigout",s:"A client asks why the provider prescribed an NSAID rather than allopurinol for a first gout attack. Which explanation is correct?",
+ o:["Allopurinol is too expensive for initial treatment.","NSAIDs are first-line for gout; allopurinol is a second-line drug that lowers uric acid production over time.","Allopurinol only works in women.","NSAIDs dissolve the uric acid crystals directly."],
+ a:[1],r:"NSAIDs are first-line for gout because they treat the acute inflammation. Allopurinol is second-line and works long-term by reducing uric acid production, not by relieving an acute flare.",
+ m:"NSAIDs Now; Allopurinol Afterwards."},
+{c:"Opioids",s:"A nurse explains to a student that opioid agonists have uses beyond analgesia. Which examples are correct? Select all that apply.",
+ o:["Suppressing a dry, hacking cough","Slowing severe diarrhea","Supplementing general anesthesia","Reducing fever","Treating seizures"],
+ a:[0,1,2],r:"Opioids are used for cough suppression, antidiarrheal effect, and balanced anesthesia, in addition to moderate–severe pain. They have no antipyretic or anticonvulsant role.",
+ m:"Opioids: Pain, Cough, Diarrhea, and the OR — not fever, not seizures."},
+{c:"Opioids",s:"For which client would an opioid be contraindicated rather than simply used cautiously?",
+ o:["A client with a documented anaphylactic reaction to morphine","A client with elevated intracranial pressure","A client in the second trimester of pregnancy","A client with paralytic ileus"],
+ a:[0],r:"Known drug allergy and severe asthma are contraindications. Elevated ICP, pregnancy, paralytic ileus, respiratory insufficiency, and sleep apnea are 'extreme caution' conditions.",
+ m:"Allergy and severe Asthma = Absolute no; the rest = go slow."},
+{c:"Opioids",s:"A client taking diphenhydramine for sleep and lorazepam for anxiety is prescribed oxycodone after surgery. What is the nurse's primary concern?",
+ o:["Reduced oxycodone absorption","Additive CNS and respiratory depression from three sedating agents","Increased risk of seizures","Elevated blood pressure"],
+ a:[1],r:"Antihistamines (diphenhydramine), benzodiazepines (lorazepam), alcohol, barbiturates, and MAOIs all add to opioid CNS/respiratory depression. Three sedating agents together markedly raise the risk.",
+ m:"Sedatives stack — count every sleepy drug on the list."},
+{c:"Opioids",s:"A client with chronic opioid use is brought to the ED unresponsive with a respiratory rate of 4/min. The family begs the nurse not to give naloxone because \"he'll be so sick.\" What is the nurse's best action?",
+ o:["Honor the family's wishes and support respirations manually.","Administer naloxone; reversing life-threatening respiratory depression takes priority over withdrawal discomfort.","Wait for the provider to discuss options with the family.","Give half the ordered dose to compromise."],
+ a:[1],r:"An antagonist must be given for severe respiratory depression regardless of the withdrawal it may cause — airway and breathing come first. Delaying or under-dosing risks death.",
+ m:"Breathing beats withdrawal every time."},
+{c:"Opioids",s:"A client on codeine/acetaminophen reports the pain remains 7/10 after the maximum dose. Which action does the nurse anticipate from the provider?",
+ o:["Increase the codeine dose further","Switch to a strong opioid such as morphine or oxycodone (WHO Step 3)","Add a second mild opioid","Stop all opioids"],
+ a:[1],r:"Codeine is a mild opioid with a ceiling effect; when maximum dosing fails, the next step on the WHO ladder is a strong opioid, not more codeine.",
+ m:"Codeine Capped? Climb the ladder to a strong opioid."},
+{c:"Schedules",s:"Which characteristics describe Schedule II controlled substances? Select all that apply.",
+ o:["High abuse potential","Accepted medical use","No refills without a new prescription","Wasted with a second RN witness","No accepted medical use","Available over the counter"],
+ a:[0,1,2,3],r:"Schedule II drugs (morphine, oxycodone, fentanyl, methadone) have high abuse potential and accepted medical use, requiring the strictest safeguards: no automatic refills, two-RN wasting, locked storage. Schedule I has no medical use; nothing scheduled is OTC.",
+ m:"C-II: high abuse, has a use, locked up tight, two nurses to waste."},
+{c:"Opioids",s:"Which client is an appropriate candidate for a fentanyl transdermal patch?",
+ o:["An opioid-naive client with acute postoperative pain","A client with chronic cancer pain who has been taking scheduled oral morphine for two months","A client with intermittent tension headaches","A client who needs rapid relief of breakthrough pain"],
+ a:[1],r:"Fentanyl patches are for opioid-tolerant chronic pain clients only. They are not for opioid-naive or acute pain, and their 12–24 hour onset makes them useless for breakthrough pain.",
+ m:"Tolerant + chronic = patch; naive or acute = never."},
+{c:"Anesthetics",s:"A client sedated with dexmedetomidine in the ICU has the infusion stopped for a neurologic exam. What should the nurse expect?",
+ o:["The client will remain sedated for 6–8 hours.","The client will wake quickly because of the drug's short half-life.","Respiratory arrest is likely once the drug stops.","Severe hallucinations will occur."],
+ a:[1],r:"Dexmedetomidine has a short half-life, so clients wake quickly once it is stopped — one reason it is favored for ventilated ICU clients. It does not cause respiratory depression.",
+ m:"Dex: stop the drip, wake up quick."},
+{c:"Anesthetics",s:"To reduce the risk of emergence hallucinations after ketamine, which nursing action is most appropriate?",
+ o:["Provide a quiet, dimly lit environment with minimal stimulation during recovery.","Encourage the client to watch television to stay oriented.","Administer naloxone.","Ambulate the client immediately."],
+ a:[0],r:"Ketamine's key adverse effect is psychomimetic reactions such as hallucinations. A calm, low-stimulation recovery environment helps reduce them; naloxone has no role.",
+ m:"Ketamine: Keep it Kalm and Kwiet on wake-up."},
+{c:"Anesthetics",s:"A nurse notes a client has been on a propofol infusion with TPN for five days. Which statement shows correct understanding of propofol?",
+ o:["\"Propofol is inhaled, so the TPN is unrelated.\"","\"Propofol is a lipid-based IV agent, so triglycerides need to be monitored with TPN.\"","\"Propofol raises potassium, so I'll check the K⁺.\"","\"Propofol is only used for induction, never for ongoing sedation.\""],
+ a:[1],r:"Propofol is a parenteral (IV) agent used for induction/maintenance and ICU ventilator sedation; lower doses provide moderate sedation. Its lipid base requires triglyceride monitoring with TPN, and RN administration is restricted in some states.",
+ m:"Propofol: Push it IV, watch the fat (triglycerides), know your Practice act."},
+{c:"Anesthetics",s:"A nurse describes nitrous oxide to a nursing student. Which statement is accurate?",
+ o:["It is the strongest general anesthetic and used alone for major surgery.","It is a weak inhaled anesthetic used mainly for dental work or as a supplement to other agents.","It is given IV.","It causes malignant hyperthermia in most clients."],
+ a:[1],r:"Nitrous oxide is the only inhaled gas still used and the weakest general anesthetic; it is used for dental procedures or to supplement more potent agents.",
+ m:"Nitrous: Nice for teeth, Not enough alone."},
+{c:"Anesthetics",s:"Which features describe sevoflurane? Select all that apply.",
+ o:["Fluorinated ether given by inhalation","Rapid onset and elimination","Nonirritating to the airway","Given IV for ICU sedation","Well suited for outpatient and pediatric induction"],
+ a:[0,1,2,4],r:"Sevoflurane is an inhaled fluorinated ether with rapid onset/elimination, nonirritating to the airway, ideal for outpatient surgery and pediatric induction. It is not an IV agent.",
+ m:"Sevo: Smooth, Speedy, Suits kids."},
+{c:"Anesthetics",s:"Which finding during moderate (conscious) sedation would require immediate intervention?",
+ o:["The client cannot recall the procedure afterward.","The client is drowsy but answers questions.","The client no longer responds to verbal commands and has an oxygen saturation of 86%.","The client reports feeling relaxed."],
+ a:[2],r:"Moderate sedation should preserve the client's airway and ability to respond to verbal commands. Loss of responsiveness with desaturation means sedation has become too deep and the airway is at risk.",
+ m:"Moderate = still talks, still breathes; silence + low sat = trouble."},
+{c:"Neuromuscular blockers",s:"Which statement about succinylcholine is correct?",
+ o:["It is a nondepolarizing agent with slow onset.","It mimics acetylcholine, causes flaccid paralysis, and can raise serum potassium.","It provides sedation and analgesia.","It is reversed with neostigmine."],
+ a:[1],r:"Succinylcholine is the depolarizing NMBD: it mimics acetylcholine, produces rapid flaccid paralysis (preferred for intubation), and can cause hyperkalemia — check K⁺ first. It provides no sedation or analgesia.",
+ m:"Sux: Speedy, Sends K up, Same as acetylcholine."},
+{c:"Neuromuscular blockers",s:"In which order does paralysis from a neuromuscular blocker typically progress? Select all statements that are correct.",
+ o:["Small muscles of the fingers and eyes are affected first","Limbs, neck, and trunk follow","Intercostal muscles and diaphragm are affected last","Recovery occurs in the reverse order","The diaphragm is paralyzed first"],
+ a:[0,1,2,3],r:"Paralysis progresses from small muscles (fingers, eyes) to limbs/neck/trunk and finally the intercostals and diaphragm; recovery is the reverse. Because breathing muscles are involved, ventilation must be assured.",
+ m:"Fingers and eyes, then body, then breath — back the other way to recover."},
+{c:"Neuromuscular blockers",s:"A client's temperature climbs suddenly to 105°F during surgery with rocuronium and a volatile anesthetic, with tachycardia and rigid muscles. Which drug does the nurse prepare?",
+ o:["Neostigmine","Dantrolene","Naloxone","Acetaminophen"],
+ a:[1],r:"These signs indicate malignant hyperthermia, triggered by volatile inhaled anesthetics or succinylcholine. Dantrolene plus cardiorespiratory support is the treatment. Neostigmine reverses NMBDs, not this crisis.",
+ m:"Hot, fast, rigid in the OR → Dantrolene."},
+{c:"Local anesthetics",s:"Which client teaching point is appropriate after an epidural using bupivacaine for labor?",
+ o:["\"Your legs will regain movement first, then sensation, then normal blood pressure and bladder control.\"","\"You will lose movement first and sensation last.\"","\"You will be unconscious during the block.\"","\"The block affects only motor function.\""],
+ a:[0],r:"Local anesthetics block autonomic function first, then sensory/pain, then motor; recovery is reverse — motor returns first, then sensory, then autonomic. Regional anesthesia does not cause loss of consciousness.",
+ m:"A-S-M lost, M-S-A back."},
+{c:"Assessment",s:"During a PQRST pain assessment the nurse asks, \"When did the pain start, and is it constant or does it come and go?\" Which component is being assessed?",
+ o:["Quality","Region","Severity","Timing"],
+ a:[3],r:"T = Timing (onset, duration, pattern). P = Provocation/Palliation, Q = Quality, R = Region/Radiation, S = Severity (0–10). The Joint Commission's pain standards make this assessment routine.",
+ m:"T is for Timing — when, how long, how often."}
+];
+const SETS={A:Q,B:ALT,C:VC};
+const NEXTSET={A:'B',B:'C',C:'A'};
+
+const bub=document.getElementById('bubbles'),stem=document.getElementById('stem'),opts=document.getElementById('opts'),
+ qnum=document.getElementById('qnum'),qcat=document.getElementById('qcat'),submit=document.getElementById('submit'),
+ next=document.getElementById('next'),fb=document.getElementById('feedback'),verdict=document.getElementById('verdict'),
+ rat=document.getElementById('rationale'),mn=document.getElementById('mnemonic'),quiz=document.getElementById('quiz'),
+ results=document.getElementById('results');
+
+let order=[],i=0,sel=new Set(),score=[],missed=[],setKey='A',practice=false;
+const get=qi=>SETS[setKey][qi];
+const eq=(a,b)=>a.size===b.length&&b.every(x=>a.has(x));
+
+function start(list,key,isPractice){
+  setKey=key||setKey;practice=!!isPractice;order=list;i=0;score=[];missed=[];
+  document.getElementById('landing').style.display='none';
+  document.getElementById('modeTag').textContent=(practice?'Practice set — similar questions · ':'')+'Version '+setKey;
+  bub.innerHTML=order.map(()=>'<span></span>').join('');
+  results.classList.remove('show');quiz.style.display='';
+  render();
+}
+function render(){
+  const q=get(order[i]);sel.clear();
+  const sata=q.a.length>1;
+  qnum.textContent=i+1;document.querySelector('.meta span').innerHTML=`Question <b>${i+1}</b> of ${order.length}`;
+  qcat.innerHTML=sata?`<span class="sata">Select all that apply</span>`:q.c;
+  stem.textContent=q.s;
+  opts.innerHTML='';
+  q.o.forEach((t,k)=>{
+    const li=document.createElement('li');
+    const b=document.createElement('button');b.className='opt'+(sata?' box':'');b.type='button';b.textContent=t;b.dataset.k=k;
+    b.onclick=()=>{ if(sata){sel.has(k)?sel.delete(k):sel.add(k);} else {sel.clear();sel.add(k);} 
+      [...opts.querySelectorAll('.opt')].forEach(o=>o.classList.toggle('sel',sel.has(+o.dataset.k))); submit.disabled=sel.size===0; };
+    li.appendChild(b);opts.appendChild(li);
+  });
+  submit.disabled=true;submit.style.display='';next.style.display='none';fb.classList.remove('show');
+  [...bub.children].forEach((s,k)=>s.classList.toggle('cur',k===i));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+submit.onclick=()=>{
+  const q=get(order[i]),ok=eq(sel,q.a);
+  score.push(ok);if(!ok)missed.push(order[i]);
+  [...opts.querySelectorAll('.opt')].forEach(o=>{const k=+o.dataset.k;o.disabled=true;o.classList.remove('sel');
+    if(q.a.includes(k))o.classList.add('right');
+    else if(sel.has(k))o.classList.add('wrong');});
+  verdict.textContent=ok?'Correct':'Incorrect — correct answer(s) highlighted in green';
+  verdict.className='verdict '+(ok?'ok':'bad');
+  rat.textContent=q.r;mn.textContent=q.m;fb.classList.add('show');
+  bub.children[i].classList.add(ok?'ok':'bad');
+  submit.style.display='none';next.style.display='';
+  next.textContent=i===order.length-1?'See results':'Next question';
+};
+next.onclick=()=>{ if(i<order.length-1){i++;render();} else finish(); };
+
+function finish(){
+  quiz.style.display='none';results.classList.add('show');
+  const n=score.filter(Boolean).length;
+  document.getElementById('scoreNum').textContent=n;
+  document.querySelector('.score small').textContent=' / '+order.length;
+  const pct=n/order.length;
+  document.getElementById('scoreNote').textContent=pct>=.9?'Strong — these chapters are in good shape.':pct>=.75?'Solid. Retry the missed items once more before the quiz.':'Work back through the rationales below, then retry the missed items.';
+  const cats={};order.forEach((qi,k)=>{const c=get(qi).c;cats[c]=cats[c]||[0,0];cats[c][1]++;if(score[k])cats[c][0]++;});
+  document.getElementById('cats').innerHTML=Object.entries(cats).map(([c,[r,t]])=>`<div class="cat"><span>${c}</span><span class="bar"><i style="width:${r/t*100}%"></i></span><span>${r}/${t}</span></div>`).join('');
+  document.getElementById('review').innerHTML=order.map((qi,k)=>`<li class="${score[k]?'ok':'bad'}"><div class="q">${get(qi).s}</div><div class="a">${get(qi).a.map(x=>get(qi).o[x]).join(' · ')}</div></li>`).join('');
+  document.getElementById('missedOnly').disabled=missed.length===0;
+  document.getElementById('similar').disabled=missed.length===0;
+  document.getElementById('similarNote').style.display=missed.length?'block':'none';
+  window.scrollTo({top:0});
+}
+document.getElementById('retake').onclick=()=>start(Q.map((_,k)=>k),setKey,false);
+document.getElementById('missedOnly').onclick=()=>start([...missed],setKey,practice);
+document.getElementById('similar').onclick=()=>start([...missed],NEXTSET[setKey],true);
+const showLanding=()=>{bub.innerHTML='';results.classList.remove('show');quiz.style.display='none';document.getElementById('landing').style.display='block';window.scrollTo({top:0});};
+document.getElementById('backHome').onclick=showLanding;
+const pick=e=>{const b=e.target.closest('[data-set]');if(!b)return;e.preventDefault();start(Q.map((_,k)=>k),b.dataset.set,false);};
+document.getElementById('landing').addEventListener('click',pick);
+document.getElementById('landing').addEventListener('touchend',pick,{passive:false});
+showLanding();
+</script>
+
+<div id="calcBar"><button id="calcBtn" aria-controls="calc">&#177; Calculator</button></div>
+<div id="calc" role="dialog" aria-label="Calculator">
+  <input id="calcOut" readonly value="0">
+  <div class="keys">
+    <button class="op" data-k="C">C</button><button class="op" data-k="back">&#9003;</button><button class="op" data-k="/">&divide;</button><button class="op" data-k="*">&times;</button>
+    <button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button><button class="op" data-k="-">&minus;</button>
+    <button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button><button class="op" data-k="+">+</button>
+    <button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button><button class="eq" data-k="=" style="grid-row:span 2">=</button>
+    <button data-k="0" style="grid-column:span 2">0</button><button data-k=".">.</button>
+  </div>
+  <button id="calcClose">Done</button>
+</div>
+<script>
+(function(){
+  const out=document.getElementById('calcOut'),panel=document.getElementById('calc');
+  const btn=document.getElementById('calcBtn');const toggle=()=>{panel.classList.toggle('show');btn.classList.toggle('on',panel.classList.contains('show'));};btn.onclick=toggle;document.getElementById('calcClose').onclick=toggle;
+  let expr='';
+  const show=()=>{out.value=expr||'0'};
+  const calc=()=>{ if(!expr)return; try{ if(!/^[\d.+\-*/ ]+$/.test(expr))throw 0; let r=Function('return ('+expr+')')(); if(!isFinite(r))throw 0; r=Math.round(r*1e6)/1e6; expr=String(r);}catch(e){expr='';out.value='Error';return;} show(); };
+  panel.querySelectorAll('.keys button').forEach(b=>b.onclick=()=>{
+    const k=b.dataset.k;
+    if(k==='C'){expr='';show();return}
+    if(k==='back'){expr=expr.slice(0,-1);show();return}
+    if(k==='='){calc();return}
+    if('+-*/'.includes(k)){ if(!expr&&k!=='-')return; if(/[+\-*/]$/.test(expr))expr=expr.slice(0,-1); expr+=k; }
+    else expr+=k;
+    show();
+  });
+})();
+</script>
+</body>
+</html>
