@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
-<title>Pain Management &amp; Analgesics — NCLEX Practice Test</title>
+<title>Nursing NCLEX Practice Tests</title>
 <style>
   html{color-scheme:light only}
   *{box-sizing:border-box;-webkit-tap-highlight-color:rgba(139,42,102,.15)}
@@ -112,6 +112,8 @@
   .ver b{font-family:Montserrat,sans-serif;font-weight:800;letter-spacing:.06em;font-size:1.05rem;color:#8b2a66}
   .ver span{font-family:Georgia,serif;font-size:.9rem;color:#6e1f52;text-align:right;max-width:55%}
   .ver:active{background:#f7e4ee}
+  .ver.subj.sel{background:#8b2a66}
+  .ver.subj.sel b,.ver.subj.sel span{color:#ffffff}
   #landing .notes{padding:12px 14px 16px;border-top:2px solid #8b2a66}
   #landing .notes h4{margin:0 0 8px;font-family:Montserrat,sans-serif;font-weight:800;font-size:.72rem;letter-spacing:.12em;color:#8b2a66}
   #landing .notes p{margin:0;font-family:Georgia,serif;font-size:.92rem;color:#6e1f52;line-height:1.75;background:repeating-linear-gradient(to bottom,transparent 0,transparent calc(1.75em - 1.5px),#8b2a66 calc(1.75em - 1.5px),#8b2a66 1.75em);padding-bottom:2px}
@@ -129,10 +131,10 @@
 
   <section id="landing">
     <div class="top">
-      <div class="brand"><span class="script">Pharmacology</span><span class="caps">PRACTICE TEST</span></div>
+      <div class="brand"><span class="script">Nursing</span><span class="caps">PRACTICE TESTS</span></div>
       <div class="fields">
-        <div class="field">TOPIC: <em>Pain Management &amp; Analgesics</em></div>
-        <div class="field">CHAPTERS: <em>10 · 11 · 44</em></div>
+        <div class="field">SUBJECT: <em id="subjLabel">Select below</em></div>
+        <div class="field">CHAPTERS: <em id="chapLabel">—</em></div>
       </div>
     </div>
     <div class="cells">
@@ -140,17 +142,22 @@
       <div class="cell"><h4>FEEDBACK</h4><p>Rationale &amp; mnemonic after every item</p></div>
       <div class="cell"><h4>TOOLS</h4><p>Calculator · retry missed · practice similar</p></div>
     </div>
-    <div class="choose">
-      <h4>SELECT A VERSION</h4>
-    </div>
+    <div class="choose"><h4>SELECT A SUBJECT</h4></div>
     <div class="versions">
-      <button class="ver" data-set="A"><b>VERSION A</b><span>Core practice set</span></button>
-      <button class="ver" data-set="B"><b>VERSION B</b><span>Same concepts, new scenarios</span></button>
-      <button class="ver" data-set="C"><b>VERSION C</b><span>Same concepts, new scenarios</span></button>
+      <button class="ver subj" data-subj="pain"><b>PAIN MANAGEMENT</b><span>Analgesics · Anesthetics · Antigout</span></button>
+      <button class="ver subj" data-subj="mh"><b>MENTAL HEALTH</b><span>Foundations · Settings · Legal &amp; Ethical</span></button>
+    </div>
+    <div id="versionsBlock" style="display:none">
+      <div class="choose"><h4>SELECT A VERSION</h4></div>
+      <div class="versions">
+        <button class="ver" data-set="A"><b>VERSION A</b><span>Core practice set</span></button>
+        <button class="ver" data-set="B"><b>VERSION B</b><span>Same concepts, new scenarios</span></button>
+        <button class="ver" data-set="C"><b>VERSION C</b><span>Same concepts, new scenarios</span></button>
+      </div>
     </div>
     <div class="notes">
       <h4>NOTES:</h4>
-      <p>All three versions cover the same 30 concepts in the same order. After any version, "Practice similar questions" pulls the matching items from the next version for everything you missed.</p>
+      <p>All three versions of a subject cover the same 30 concepts in the same order. After any version, "Practice similar questions" pulls the matching items from the next version for everything you missed.</p>
       <svg class="cad" viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="#8b2a66" stroke-width="3" stroke-linecap="round"><line x1="32" y1="10" x2="32" y2="58"/><path d="M22 14c0-4 20-4 20 0s-20 4-20 8 20 4 20 8-20 4-20 8 20 4 20 8"/><path d="M32 10c-4-4-10-4-14 0"/><path d="M32 10c4-4 10-4 14 0"/></g><circle cx="32" cy="7" r="3" fill="#8b2a66"/></svg>
     </div>
   </section>
@@ -554,7 +561,379 @@ const VC = [
  a:[3],r:"T = Timing (onset, duration, pattern). P = Provocation/Palliation, Q = Quality, R = Region/Radiation, S = Severity (0–10). The Joint Commission's pain standards make this assessment routine.",
  m:"T is for Timing — when, how long, how often."}
 ];
-const SETS={A:Q,B:ALT,C:VC};
+const MH_A = [
+{c:"Mental health basics",s:"A nursing student says, \"A mentally healthy person never feels stressed or upset.\" Which response by the instructor is most accurate?",
+ o:["\"Correct — mental health means the absence of stress.\"","\"Mental health means a person can cope with stress and continue to function, not that stress never occurs.\"","\"Mental health is defined only by the absence of a DSM-5 diagnosis.\"","\"Stress always indicates a developing mental illness.\""],
+ a:[1],r:"Mental health is emotional, psychological, and social well-being that allows a person to cope with everyday stress, work productively, and maintain relationships. Everyone experiences stress; the mentally healthy person adapts and keeps functioning.",
+ m:"Healthy ≠ stress-free; healthy = can Cope and keep Coping."},
+{c:"Mental health basics",s:"A family member states that their brother \"chose\" to become depressed. Which nursing response reflects current understanding of mental illness?",
+ o:["\"Depression is usually a sign of weak character.\"","\"Mental illness develops from a combination of genetic vulnerability, biology, and stressors — it is not a choice.\"","\"He could stop if he tried harder.\"","\"Only people with a family history develop depression.\""],
+ a:[1],r:"Mental illness results from interacting biological, genetic, psychological, and environmental factors, often triggered by major stress. It is a medical condition, not a chosen behavior or moral failing — a belief that fuels stigma.",
+ m:"Not a choice — Biology + Genes + Stress = the mix that triggers illness."},
+{c:"Mental health basics",s:"A client who lost her job and home in a fire is now working again and rebuilding with help from her community. The nurse recognizes this as an example of:",
+ o:["denial.","resilience.","regression.","codependency."],
+ a:[1],r:"Resilience is the ability to recover from and adapt to adversity using personal strengths and available support. It does not mean the stressor had no effect — it means the person worked through it.",
+ m:"Resilience = Rebound, not Resistance to feeling."},
+{c:"Mental health basics",s:"The nurse is assessing factors that influence a teenager's mental health. Which findings are protective factors? Select all that apply.",
+ o:["Supportive relationship with a grandparent","Stable, safe housing","History of childhood trauma","Access to a school counselor","Living in a neighborhood with frequent violence","Regular involvement in a sports team"],
+ a:[0,1,3,5],r:"Protective factors include supportive relationships, safe housing, access to care, and positive social connections. Trauma history and community violence are risk factors at the individual and environmental levels.",
+ m:"Protective = People, Place, and Programs that support."},
+{c:"Mental health basics",s:"A nurse volunteers with the National Alliance on Mental Illness (NAMI). Which activity best reflects the purpose of this consumer advocacy organization?",
+ o:["Diagnosing mental disorders in members","Educating the public to reduce stigma and advocating for better services","Prescribing medications at community events","Deciding treatment plans for members"],
+ a:[1],r:"NAMI is a grassroots consumer/family organization that educates, supports, reduces stigma, and advocates for better services. It does not provide diagnosis or prescribe.",
+ m:"NAMI: Nurture, Advocate, Mentor, Inform."},
+{c:"Mental health basics",s:"A client with schizophrenia says, \"I want to finish my degree and live on my own someday.\" Which nursing response reflects the recovery model?",
+ o:["\"Let's focus on managing your symptoms first; those goals aren't realistic.\"","\"Those are your goals — let's plan the supports that help you move toward them.\"","\"The treatment team will decide what is best for you.\"","\"People with schizophrenia usually can't live independently.\""],
+ a:[1],r:"Recovery-oriented care is person-centered and hopeful; the client defines meaningful goals and the team supports them. It shifts from professionals deciding everything to partnership and self-determination.",
+ m:"Recovery = the client's goals, the team's support."},
+{c:"Legislation",s:"A client says her insurance limited her to 10 therapy visits a year while allowing unlimited visits for her diabetes. Which legislation was intended to address this inequality?",
+ o:["Mental Health Parity Act","Americans with Disabilities Act","Health Insurance Portability and Accountability Act","Olmstead decision"],
+ a:[0],r:"The Mental Health Parity Act (1996) required insurers to treat mental health benefits more equally with medical/surgical benefits. Its original form had gaps that later legislation strengthened.",
+ m:"Parity = mental and physical health treated as Peers by insurance."},
+{c:"Legislation",s:"A client with a history of bipolar disorder was previously denied coverage for a pre-existing condition. Which law changed this and made mental health care an essential health benefit?",
+ o:["Mental Health Parity Act of 1996","Affordable Care Act of 2010","HIPAA of 1996","Community Mental Health Centers Act of 1963"],
+ a:[1],r:"The Affordable Care Act (2010) made mental health and substance use treatment essential health benefits and prohibited denial of coverage for pre-existing conditions, expanding access.",
+ m:"ACA = Access, Coverage, and no pre-existing-condition Ax."},
+{c:"Epidemiology & classification",s:"A nurse reads that 20% of adults in the community currently have an anxiety disorder. Which epidemiologic term does this statistic represent?",
+ o:["Incidence","Prevalence","Comorbidity","Mortality"],
+ a:[1],r:"Prevalence is the proportion of a population with a disorder at a given time. Incidence counts new cases over a period; comorbidity refers to having two or more disorders at once.",
+ m:"Prevalence = how many People have it now; Incidence = how many are Incoming."},
+{c:"Epidemiology & classification",s:"A new nurse asks why the treatment team uses the DSM-5. Which explanation is most accurate?",
+ o:["It provides specific criteria so the team uses a common language for diagnosis and care planning.","It replaces the nurse's own assessment of the client.","It is the system used for billing and reimbursement codes.","It classifies people rather than disorders."],
+ a:[0],r:"The DSM-5 supplies standardized diagnostic criteria for a shared clinical language. ICD-10-CM is the coding system used for documentation and reimbursement. Both classify disorders, not people, and the nurse still assesses the individual.",
+ m:"DSM Describes Symptoms; ICD Is for Coding Dollars."},
+{c:"PMH nursing",s:"Which activities are within the scope of a basic-level psychiatric-mental health registered nurse? Select all that apply.",
+ o:["Administering prescribed medications and monitoring response","Leading a milieu group on coping skills","Providing patient and family education","Prescribing an antipsychotic","Conducting individual psychotherapy as an independent provider","Performing ongoing assessments and reporting to the team"],
+ a:[0,1,2,5],r:"Basic-level PMH nurses assess, administer and monitor medications, educate, and manage the milieu. Prescribing and independent psychotherapy are advanced-practice (APRN) functions.",
+ m:"RN: Assess, Administer, Advocate, Educate. APRN: Diagnose, Prescribe, Psychotherapy."},
+{c:"Theories",s:"A client says, \"Part of me wants to skip work and party, but I know I have responsibilities, and I'd feel too guilty anyway.\" According to Freud, which structure represents the guilt?",
+ o:["Id","Ego","Superego","Libido"],
+ a:[2],r:"The id seeks immediate gratification, the ego mediates with reality, and the superego holds morals and conscience — the source of guilt. Freud's theory also introduced defense mechanisms for handling anxiety.",
+ m:"Id = I want; Ego = I'll manage; Superego = I Should."},
+{c:"Theories",s:"A client with a fear of elevators is gradually exposed to elevators — first pictures, then standing near one, then riding one floor. Which theoretical approach is being used?",
+ o:["Psychoanalytic therapy","Behavior therapy (systematic desensitization)","Milieu therapy","Cognitive therapy"],
+ a:[1],r:"Behaviorism holds that behaviors are learned and can be unlearned. Systematic desensitization exposes the client to the feared stimulus in gradual steps while practicing relaxation.",
+ m:"Behavior therapy: Baby steps toward the Bear."},
+{c:"Theories",s:"A client says, \"I failed one exam, so I'm a complete failure.\" Which nursing response best reflects cognitive therapy principles?",
+ o:["\"Tell me about your childhood.\"","\"Let's look at the evidence — does one exam really mean you fail at everything?\"","\"I'll reward you each time you study.\"","\"You'll feel better after group today.\""],
+ a:[1],r:"Cognitive therapy targets distorted, automatic thoughts (here, all-or-nothing thinking) and helps the client examine evidence and reframe more realistically, since thoughts drive feelings and behavior.",
+ m:"Cognitive: Catch the thought, Check the evidence, Change the thought."},
+{c:"Theories",s:"A nurse ensures the unit has a predictable daily schedule, clear rules, and opportunities for clients to practice social skills. Which therapeutic approach is this?",
+ o:["Milieu therapy","Psychoanalysis","Pharmacotherapy","Electroconvulsive therapy"],
+ a:[0],r:"Milieu therapy uses the environment itself — structure, routines, safety, staff support, and peer interaction — as treatment. A calm, structured setting reduces anxiety and lets clients know what to expect.",
+ m:"Milieu = the Mood of the room is the Medicine."},
+{c:"Treatment settings",s:"Which historical development led to large numbers of clients leaving state institutions for community-based care?",
+ o:["The Civil War","Deinstitutionalization in the 1960s and the Olmstead decision of 1999","The creation of the DSM-5","The passage of HIPAA"],
+ a:[1],r:"Deinstitutionalization in the 1960s (with new antipsychotics and community mental health legislation) moved care to the community, and the Olmstead decision (1999) affirmed the right to receive services in the least restrictive, community-integrated setting.",
+ m:"1960s emptied the institutions; Olmstead 1999 said Out in the community is a right."},
+{c:"Treatment settings",s:"A client with schizophrenia has had five hospitalizations in one year and struggles to keep appointments. Which outpatient service is most appropriate?",
+ o:["Monthly primary care visits","Assertive Community Treatment (ACT)","A peer support group","A one-time telepsychiatry consult"],
+ a:[1],r:"ACT provides intensive, team-based, community-delivered support for people with serious mental illness who have difficulty staying stable with standard outpatient care.",
+ m:"ACT = Aggressive Community Team for the seriously ill."},
+{c:"Treatment settings",s:"A client in a rural area has no psychiatric provider within 100 miles. Which option most directly improves access to psychiatric care?",
+ o:["Telepsychiatry","Involuntary admission","Forensic hospital referral","State hospital placement"],
+ a:[0],r:"Telepsychiatry connects clients with psychiatric providers through video technology, improving access where specialists are scarce. Primary care providers are also often the first point of contact for mental health symptoms.",
+ m:"Tele = Treatment from Everywhere."},
+{c:"Treatment settings",s:"A person calls 911 because her neighbor is pacing, shouting, and threatening to hurt himself. Which emergency psychiatric care model responds in the community to assess and stabilize him?",
+ o:["Hospital-based consultant model","Comprehensive emergency service model","Mobile crisis team model","Care pathway model"],
+ a:[2],r:"The three emergency models are comprehensive emergency services, hospital-based consultation, and mobile crisis teams. Mobile crisis teams go into the community; the goals of emergency care are triage (determine urgency) and stabilization.",
+ m:"Mobile crisis Meets them where they are."},
+{c:"Treatment settings",s:"A client in acute distress is admitted to a unit for about 48 hours until symptoms improve and she can return to outpatient care. Which setting is this?",
+ o:["State psychiatric hospital","Crisis stabilization/observation unit","Residential treatment facility","Forensic unit"],
+ a:[1],r:"Crisis stabilization units provide short-term care (usually 1–3 days) for rapid stabilization of symptoms expected to improve quickly. State hospitals treat the most seriously ill, often long-term or court-ordered.",
+ m:"Crisis unit: 1 to 3 days, then back to the community."},
+{c:"Admission & rights",s:"Which situations meet the criteria for involuntary psychiatric admission? Select all that apply.",
+ o:["A client with a suicide plan who refuses treatment","A client threatening to kill his roommate","A client who has not eaten or bathed in weeks and cannot care for herself","A client who disagrees with his family about his medication","A client who is homeless but functioning and not dangerous"],
+ a:[0,1,2],r:"Involuntary admission requires legal criteria: danger to self, danger to others, or being gravely disabled/unable to meet basic needs. Disagreement or homelessness alone does not qualify.",
+ m:"Involuntary = Danger to Self, Danger to Others, or Gravely Disabled."},
+{c:"Admission & rights",s:"A nurse restricts a hospitalized client's phone use because the client was calling family members at 3 a.m. to threaten them. Which statements are correct? Select all that apply.",
+ o:["The restriction must be clinically justified.","The restriction must be clearly documented.","The restriction should focus on safety.","Hospitalized psychiatric clients lose their civil rights, so no justification is needed.","Involuntary clients have no right to communicate by phone."],
+ a:[0,1,2],r:"Hospitalized clients retain civil rights, including private communication. Any restriction must be clinically justified, documented, and focused on safety — never routine or punitive.",
+ m:"Restrict a right? Justify it, Document it, make it about Safety."},
+{c:"Treatment settings",s:"Why is the nurse often the team member who leads treatment planning meetings on an inpatient unit?",
+ o:["Nurses have the highest level of education on the team.","Nurses are present 24/7 and provide ongoing assessment of response to treatment, safety, and education needs.","Nurses are responsible for prescribing medications.","Nurses make the final decision about discharge."],
+ a:[1],r:"Because nurses are present around the clock, they contribute continuous assessment data, safety observations, and patient response to treatment, which is why they often lead interdisciplinary planning.",
+ m:"Nurses are there 24/7 — the eyes and ears of the team."},
+{c:"Safety",s:"A client on the unit begins pacing, clenching his fists, and speaking louder. What is the nurse's priority action?",
+ o:["Call for a physical hold immediately.","Use calm communication and de-escalation techniques while alerting the team.","Ignore the behavior so it is not reinforced.","Place the client in seclusion."],
+ a:[1],r:"Behavioral crises escalate in predictable stages; early recognition and verbal de-escalation with team awareness can prevent violence. Hands-on interventions are a last resort.",
+ m:"See it early, Speak calmly, Summon the team — hands-on Last."},
+{c:"Ethics",s:"A nurse tells a client, \"I'll be back in 15 minutes to talk,\" and returns on time. Which ethical principle is demonstrated?",
+ o:["Justice","Veracity","Fidelity","Autonomy"],
+ a:[2],r:"Fidelity is keeping promises and being dependable. Veracity is truthfulness, justice is fairness, autonomy is respecting self-determination, and beneficence is doing good.",
+ m:"Fidelity = Faithful to your word."},
+{c:"Admission & rights",s:"An involuntarily admitted client files a legal petition asking a court to review whether her detention is lawful. Which term describes this?",
+ o:["Writ of habeas corpus","Conditional discharge","Informed consent","Advance directive"],
+ a:[0],r:"A writ of habeas corpus is the legal procedure by which a detained person asks a court to determine whether the confinement is lawful — a key right during involuntary commitment.",
+ m:"Habeas corpus = 'bring the body' to the judge."},
+{c:"Admission & rights",s:"A client with severe depression is scheduled for electroconvulsive therapy (ECT). The nurse notes the consent form is signed but the client says, \"I don't really know what this treatment does.\" What is the nurse's best action?",
+ o:["Proceed; the form is signed.","Notify the provider that informed consent is incomplete and the client needs further explanation.","Explain the risks yourself and proceed.","Ask the family to consent instead."],
+ a:[1],r:"Informed consent requires the client to receive information, understand risks/benefits/alternatives, and agree voluntarily. ECT requires informed consent; a signature without understanding is not valid, and the provider must re-explain.",
+ m:"Consent = Informed + Understood + Voluntary — a signature alone is not consent."},
+{c:"Restraint & seclusion",s:"A provider writes, \"Restraints PRN for agitation.\" What is the nurse's best action?",
+ o:["Carry out the order when the client becomes agitated.","Question the order; restraint orders can never be PRN or standing and require a face-to-face evaluation within 1 hour.","Apply restraints and document that a PRN order exists.","Ask the charge nurse to co-sign the order."],
+ a:[1],r:"Restraint/seclusion orders are used only for violent or self-destructive behavior, are never PRN or standing, and require a face-to-face evaluation within 1 hour. Adult orders are limited to 4 hours (2 hours ages 9–17, 1 hour under 9), up to 24 hours total.",
+ m:"No PRN, no standing, face-to-face in 1 — then 4 / 2 / 1 hours by age."},
+{c:"Restraint & seclusion",s:"A client is in four-point restraints. Which nursing actions are required? Select all that apply.",
+ o:["Continuous observation","Assess circulation and skin integrity at regular intervals (about every 15–30 minutes)","Offer fluids, food, and toileting","Document the behaviors that led to restraint, the time applied and released, and the client's response","Release the client only when the order expires, even if calm","Leave the client alone to reduce stimulation"],
+ a:[0,1,2,3],r:"Restrained clients require continuous observation, frequent assessment of safety, circulation, skin, comfort, and physical needs, with documentation of each check. Restraints are discontinued as soon as the client is calm and safe, not held until the order expires.",
+ m:"Watch, Check, Care, Chart — and release as soon as it's safe."},
+{c:"Legal",s:"A nurse tells a client, \"If you don't take this medication, I'll give you an injection whether you like it or not,\" then forcibly injects the calm, non-dangerous client. Which torts have occurred? Select all that apply.",
+ o:["Assault","Battery","Negligence","Defamation","Malpractice"],
+ a:[0,1],r:"Assault is creating fear of unwanted contact (the threat); battery is the unwanted contact itself (the forced injection). Both are intentional torts. Negligence and malpractice are unintentional and require duty, breach, cause in fact, proximate cause, and damages.",
+ m:"Assault = the threat; Battery = the touch."}
+];
+const MH_B = [
+{c:"Mental health basics",s:"Which client best demonstrates mental health despite a stressful situation?",
+ o:["A client who denies feeling any stress during a divorce","A client who cries about her divorce, then seeks support from friends and keeps going to work","A client who stops eating and sleeping after a divorce","A client who says stress means she is failing"],
+ a:[1],r:"Mental health is the ability to experience normal emotions, cope with stress, and continue functioning. Denial and shutdown are not signs of health; adaptive coping with support is.",
+ m:"Feel it, deal with it, keep functioning."},
+{c:"Mental health basics",s:"A client asks, \"What actually causes mental illness?\" Which response is most accurate?",
+ o:["\"It's caused by poor parenting.\"","\"It comes from a combination of genetic vulnerability, brain chemistry, and life stressors.\"","\"It's caused by lack of willpower.\"","\"Scientists have found a single gene for each disorder.\""],
+ a:[1],r:"Mental illness arises from interacting biological, genetic, psychological, and environmental factors. Blaming parents or willpower reflects stigma, and no single gene explains any disorder.",
+ m:"Genes load the gun; stress pulls the trigger."},
+{c:"Mental health basics",s:"Which statement about resilience is accurate?",
+ o:["Resilient people are not affected by stress.","Resilience is the ability to adapt and recover from adversity using strengths and supports.","Resilience is inherited and cannot be developed.","Resilient people never need help from others."],
+ a:[1],r:"Resilience is the capacity to work through and recover from stress, using personal strengths and available support. It can be built, and asking for help is part of it.",
+ m:"Resilience Bends without Breaking."},
+{c:"Mental health basics",s:"Which findings are risk factors for developing a mental disorder? Select all that apply.",
+ o:["Ongoing substance use","Social isolation","Living in poverty without access to health care","Strong family support","Exposure to community violence","Regular participation in a faith community"],
+ a:[0,1,2,4],r:"Risk factors occur at individual (substance use, trauma), social (isolation, family conflict), and environmental (poverty, violence, lack of care) levels. Support and community involvement are protective.",
+ m:"Risk lives in the person, the people, and the place."},
+{c:"Mental health basics",s:"Which belief most contributes to stigma and keeps people from seeking mental health care?",
+ o:["Mental illness is a treatable medical condition.","People with mental illness are weak or dangerous.","Mental illness is common.","Recovery is possible."],
+ a:[1],r:"Stigma is driven by beliefs that mental illness reflects weakness, is under a person's control, or makes people dangerous. It leads to shame, hiding symptoms, and delayed care — one reason consumer groups like NAMI focus on education.",
+ m:"Stigma Says 'weak or scary' — education Says otherwise."},
+{c:"Mental health basics",s:"Which statement by a nurse reflects recovery-oriented care?",
+ o:["\"The goal is to eliminate every symptom before discharge.\"","\"Recovery means living a meaningful life as you define it, even if some symptoms remain.\"","\"You should let the team make decisions until you are well.\"","\"Recovery is only possible for mild disorders.\""],
+ a:[1],r:"The recovery model emphasizes hope, self-determination, and a meaningful life defined by the client — not symptom elimination decided by professionals.",
+ m:"Recovery: Hope, Choice, and a life worth living — client's definition."},
+{c:"Legislation",s:"A nurse explains the Mental Health Parity Act of 1996 to a client. Which statement is correct?",
+ o:["It made mental health coverage free for everyone.","It required insurers to move toward covering mental health benefits equally with physical health benefits, though the original law had limits.","It created state psychiatric hospitals.","It established the DSM."],
+ a:[1],r:"The 1996 Parity Act pushed insurers toward equal treatment of mental and physical health benefits. Its gaps (such as not requiring mental health coverage at all) were addressed by later legislation.",
+ m:"Parity 1996: a Push toward equal, not a Perfect fix."},
+{c:"Legislation",s:"Which statement accurately describes an effect of the Affordable Care Act (2010) on mental health care?",
+ o:["It eliminated all copays for therapy.","It made mental health care an essential health benefit and barred denial for pre-existing conditions.","It required all clients to receive inpatient treatment.","It created the DSM-5."],
+ a:[1],r:"The ACA classified mental health and substance use treatment as essential benefits, banned pre-existing-condition exclusions, and broadened access. It did not eliminate cost sharing or mandate inpatient care.",
+ m:"ACA: Essential benefit, no Exclusions, Expanded access."},
+{c:"Epidemiology & classification",s:"A client is diagnosed with both major depressive disorder and alcohol use disorder. Which term describes this?",
+ o:["Prevalence","Incidence","Comorbidity","Parity"],
+ a:[2],r:"Comorbidity is the co-occurrence of two or more disorders in the same person. Prevalence and incidence are population measures.",
+ m:"Co-morbidity = Conditions Coexisting."},
+{c:"Epidemiology & classification",s:"Which statement correctly differentiates the DSM-5 from the ICD-10-CM?",
+ o:["The DSM-5 codes all medical conditions; the ICD is only for psychiatry.","The DSM-5 gives diagnostic criteria for mental disorders; the ICD-10-CM codes health conditions for documentation and reimbursement.","Both classify the person rather than the disorder.","The ICD-10-CM is used only in the United States."],
+ a:[1],r:"The DSM-5 is the U.S. diagnostic criteria manual for mental disorders; ICD-10-CM is the international classification used for coding and billing. Both classify disorders, not people.",
+ m:"DSM = Diagnose; ICD = Invoice Code."},
+{c:"PMH nursing",s:"Which functions distinguish the psychiatric-mental health APRN from the basic-level RN? Select all that apply.",
+ o:["Diagnosing mental disorders","Prescribing psychotropic medications","Providing psychotherapy","Administering prescribed medications","Maintaining the therapeutic milieu"],
+ a:[0,1,2],r:"APRNs diagnose, prescribe, and provide psychotherapy. Administering medications and managing the milieu are shared basic-level functions.",
+ m:"APRN adds the 3 Ps: Prescribe, Psychotherapy, Provide diagnoses."},
+{c:"Theories",s:"A client who is anxious about an upcoming surgery jokes and laughs about it constantly. According to psychoanalytic theory, the nurse recognizes this as:",
+ o:["a defense mechanism used to manage anxiety.","a sign the client has no anxiety.","a symptom of the id.","evidence of cognitive distortion."],
+ a:[0],r:"Freud described defense mechanisms as unconscious strategies for reducing anxiety. Recognizing them helps the nurse understand that behavior may reflect how the client is coping rather than how they truly feel.",
+ m:"Defense mechanisms Defend the mind from anxiety."},
+{c:"Theories",s:"A nurse gives a client a token each time he attends group; tokens can be exchanged for privileges. Which concept is being applied?",
+ o:["Positive reinforcement (behavior therapy)","Free association","Cognitive restructuring","Milieu therapy"],
+ a:[0],r:"Behaviorism holds that behavior is shaped by consequences; positive reinforcement increases desired behavior. Token economies, modeling, goal setting, and gradual exposure are behavioral techniques used in nursing.",
+ m:"Reward it and you'll Repeat it."},
+{c:"Theories",s:"According to cognitive theory, what is the primary target of treatment?",
+ o:["Unconscious childhood conflicts","Distorted or negative thought patterns that drive feelings and behavior","The physical environment of the unit","Neurotransmitter imbalances"],
+ a:[1],r:"Cognitive theory holds that how we think shapes how we feel and act. Therapy helps clients identify distorted thoughts and evaluate situations more realistically.",
+ m:"Change the Thinking, change the Feeling."},
+{c:"Theories",s:"Which statement best describes the therapeutic milieu?",
+ o:["Only the medications prescribed on the unit","The healing environment created by clients, staff, physical setting, structure, and emotional climate","The locked door and security cameras","The psychiatrist's individual therapy sessions"],
+ a:[1],r:"The therapeutic milieu is the healing environment created by clients, staff, setting, structure, and emotional atmosphere. Medications are part of treatment but not the milieu itself.",
+ m:"Milieu = People, Place, Plan, and the Pulse of the room."},
+{c:"Treatment settings",s:"Which statement describes the significance of the Olmstead decision (1999)?",
+ o:["It required all clients to be treated in state hospitals.","It affirmed the right of people with disabilities to receive services in the community rather than unnecessary institutionalization.","It created the Mental Health Parity Act.","It banned involuntary admission."],
+ a:[1],r:"Olmstead (1999) held that unjustified institutionalization is discrimination and that people with disabilities have a right to community-based services when appropriate — reinforcing the least restrictive environment.",
+ m:"Olmstead = Out of the institution when community care is appropriate."},
+{c:"Treatment settings",s:"Which client would benefit most from Assertive Community Treatment (ACT)?",
+ o:["A client with mild situational anxiety","A client with serious mental illness, repeated hospitalizations, and difficulty staying stable in the community","A client stable on medication for years","A client seeking a one-time evaluation"],
+ a:[1],r:"ACT is an intensive, team-based outpatient model for people with serious mental illness who struggle with stability, coordinating treatment and services in the community.",
+ m:"ACT: high need, high support, at home in the community."},
+{c:"Treatment settings",s:"Where do most people with symptoms of anxiety or depression first seek care?",
+ o:["State psychiatric hospital","Primary care provider","Forensic unit","Crisis stabilization unit"],
+ a:[1],r:"Primary care is usually the first point of contact for mental health symptoms. Community clinics offer more specialized services, and telepsychiatry expands access where providers are scarce.",
+ m:"Primary care = the Portal of entry."},
+{c:"Treatment settings",s:"What are the two main goals of emergency psychiatric care?",
+ o:["Long-term psychotherapy and housing","Triage (determining severity/urgency) and stabilization of the immediate crisis","Diagnosis and discharge planning","Medication research and education"],
+ a:[1],r:"Emergency care serves clients from mild concern to acute crisis, triaging severity and stabilizing the immediate situation, then determining the appropriate level of care. It is often the bridge to inpatient services.",
+ m:"Emergency care: Triage it, Tame it, Transfer to the right level."},
+{c:"Treatment settings",s:"A client found Not Guilty by Reason of Insanity is sent for court-ordered treatment. Which setting typically provides this care?",
+ o:["Private psychiatric hospital","Crisis stabilization unit","State psychiatric hospital (forensic services)","Partial hospitalization program"],
+ a:[2],r:"State hospitals treat the most seriously ill and often provide forensic services: court-ordered care, competency and sanity evaluations, and treatment for NGRI clients, with emphasis on treatment rather than punishment.",
+ m:"State hospital = Serious illness, long-term, and the courtroom cases."},
+{c:"Admission & rights",s:"Which statements about voluntary admission are correct? Select all that apply.",
+ o:["The client agrees to hospitalization.","The client may request to leave, even against medical advice.","The client may be evaluated before release if safety concerns arise.","The client permanently loses the right to refuse medication.","Voluntary status can never change to involuntary."],
+ a:[0,1,2],r:"Voluntary clients consent to admission and may request discharge, though a safety evaluation may be required first. They keep the right to refuse treatment, and status can change to involuntary if legal criteria are met.",
+ m:"Voluntary = came by choice, can ask to leave, keeps every right."},
+{c:"Admission & rights",s:"Which rights do hospitalized psychiatric clients retain? Select all that apply.",
+ o:["The right to refuse medication","The right to communicate privately by phone and in person","The right to legal counsel","The right to vote","The right to be free from any supervision"],
+ a:[0,1,2,3],r:"Clients retain civil rights including refusing treatment, private communication, legal counsel, voting, informed consent, confidentiality, and the least restrictive treatment. Safety supervision is not a rights violation.",
+ m:"Hospitalized, not de-citizened."},
+{c:"Treatment settings",s:"A unit uses standardized plans for common conditions that shorten stays and improve outcomes, adjusting them if a client's progress changes. What are these called?",
+ o:["Care pathways (clinical/integrated pathways)","Advance directives","Writs of habeas corpus","Milieu contracts"],
+ a:[0],r:"Care pathways are standardized, evidence-based plans for common conditions based on the expected clinical course. They improve outcomes, shorten stays, and reduce costs, and are adjusted when progress differs.",
+ m:"Pathway = the Predictable Plan, adjusted when the Patient differs."},
+{c:"Safety",s:"Which statement about behavioral crises on a psychiatric unit is accurate?",
+ o:["Physical restraint should be the first response to raised voices.","Crises often escalate in predictable stages, so early recognition and de-escalation can prevent violence.","Crisis prevention training is needed only once in a career.","Violence cannot be anticipated."],
+ a:[1],r:"Crises escalate predictably; early recognition and de-escalation prevent violence. Staff receive crisis prevention training (recommended annually), and physical intervention is a last resort.",
+ m:"Predictable, Preventable, Physical only as the last Plan."},
+{c:"Ethics",s:"A nurse uses de-escalation techniques to help an agitated client become calm and safe. Which ethical principle is primarily demonstrated?",
+ o:["Beneficence","Veracity","Justice","Fidelity"],
+ a:[0],r:"Beneficence is acting to do good for the client. Autonomy respects choice, justice is fairness, fidelity is keeping promises, and veracity is truthfulness.",
+ m:"Beneficence = Be good to the patient."},
+{c:"Admission & rights",s:"A client is discharged with the requirement to attend outpatient appointments and take medications, or be returned to the hospital. Which type of discharge is this?",
+ o:["Discharge against medical advice (AMA)","Conditional discharge","Unconditional discharge","Emergency discharge"],
+ a:[1],r:"A conditional discharge releases the client with specified conditions (such as outpatient follow-up); failure to comply may lead to rehospitalization. AMA discharge is the client leaving against advice.",
+ m:"Conditional = released with Conditions attached."},
+{c:"Admission & rights",s:"Which statement correctly differentiates capacity from competency?",
+ o:["Capacity is a legal determination; competency is a clinical judgment.","Capacity is a clinical, task-specific judgment about the ability to make an informed decision; competency is a legal determination.","Both are declared by the nurse.","A client declared incompetent may still sign informed consent independently."],
+ a:[1],r:"Capacity is clinical, task-specific, and may fluctuate; competency is a legal determination — a client is competent until a court rules otherwise, and then a guardian is assigned. Health care providers cannot declare competency.",
+ m:"Capacity = Clinician; Competency = Court."},
+{c:"Restraint & seclusion",s:"A 15-year-old is placed in restraints for violent behavior. For how long may the initial order be written?",
+ o:["1 hour","2 hours","4 hours","24 hours"],
+ a:[1],r:"Time limits are age-based: adults 4 hours, children/adolescents 9–17 years 2 hours, children under 9 1 hour. Orders may be renewed up to 24 hours total, after which a provider must personally reassess.",
+ m:"4 for adults, 2 for teens, 1 for little ones."},
+{c:"Restraint & seclusion",s:"What must the nurse document when a client is placed in seclusion? Select all that apply.",
+ o:["The specific behaviors that led to seclusion","Time seclusion began and ended","Type of restraint or seclusion used","The client's response","Only the provider's name, since documentation is optional"],
+ a:[0,1,2,3],r:"Documentation must include the precipitating behaviors, times applied and released, type used, and client response, plus each monitoring assessment. Documentation is never optional.",
+ m:"Why, When, What kind, and hoW they responded."},
+{c:"Legal",s:"Which elements must all be present to prove nursing negligence? Select all that apply.",
+ o:["Duty","Breach of duty","Cause in fact","Proximate cause","Damages","Intent to harm"],
+ a:[0,1,2,3,4],r:"Negligence (an unintentional tort) requires duty, breach, cause in fact, proximate cause, and damages — all five. Intent is not required; intent defines intentional torts like assault and battery.",
+ m:"Duty, Breach, Cause, Cause, Damages — all 5 or no case."}
+];
+const MH_C = [
+{c:"Mental health basics",s:"Which statement best defines mental health?",
+ o:["The absence of any psychiatric diagnosis","A state of emotional, psychological, and social well-being that allows a person to cope with stress and function daily","Never experiencing sadness or anger","Having a high income and stable job"],
+ a:[1],r:"Mental health is well-being that supports coping, productive functioning, and relationships. It exists on a continuum and is not simply the absence of illness.",
+ m:"Mental health = Well-being that Works in daily life."},
+{c:"Mental health basics",s:"On the mental health continuum, which description represents a person with mild depression?",
+ o:["High level of functioning with no stress","Everyday stress with no impairment in functioning","Altered thinking, mood, and behavior with some impairment","Sense of complete well-being"],
+ a:[2],r:"The continuum runs from well-being and high functioning, to everyday stress without impairment, to mental illness with altered thinking, mood, and behavior. Shifts along it can be gradual or sudden.",
+ m:"Well → Stressed but functioning → Altered and impaired."},
+{c:"Mental health basics",s:"A veteran who lost a leg in combat now coaches adaptive sports and mentors other amputees. The nurse identifies this as:",
+ o:["resilience and emotional growth.","reaction formation.","learned helplessness.","denial of loss."],
+ a:[0],r:"Resilience is recovering and adapting after adversity; emotional growth means learning from experience and finding healthier ways to cope and contribute.",
+ m:"Resilience turns the wound into the work."},
+{c:"Mental health basics",s:"Which factors are environmental influences on mental health? Select all that apply.",
+ o:["Living in poverty","Unsafe or unstable housing","Lack of access to health care","Genetic predisposition","Poor coping skills"],
+ a:[0,1,2],r:"Environmental factors include poverty, violence, unsafe living conditions, and lack of resources or access to care. Genetics and coping skills are individual-level factors.",
+ m:"Environment = the world around you: money, housing, access."},
+{c:"Mental health basics",s:"What has been the overall direction of the consumer movement in mental health?",
+ o:["Toward professionals making all treatment decisions","Toward patient rights, advocacy, recovery, and community-based care","Toward longer institutional stays","Toward eliminating family involvement"],
+ a:[1],r:"The consumer movement shifted care away from provider-controlled decisions toward patient rights, self-advocacy, recovery, and community care, with organizations like NAMI leading education and advocacy.",
+ m:"Consumers moved care from 'done to' toward 'done with.'"},
+{c:"Mental health basics",s:"A client in recovery-oriented care relapses. Which nursing response is most consistent with the recovery model?",
+ o:["\"This proves you can't manage on your own.\"","\"Relapse can be part of recovery — let's look at what we can learn and adjust your plan.\"","\"We'll need to take over your decisions now.\"","\"Recovery is over once you relapse.\""],
+ a:[1],r:"Recovery is a nonlinear, hopeful process. Setbacks are learning opportunities, and the client remains the center of decision-making.",
+ m:"Recovery isn't a straight line — Relapse is a Redirect, not a Reset."},
+{c:"Legislation",s:"Before the Mental Health Parity Act, which insurance practice was common?",
+ o:["Unlimited mental health visits","Stricter limits and higher costs for mental health benefits than for physical health benefits","Free medications for psychiatric disorders","No coverage for physical illness"],
+ a:[1],r:"Insurers often imposed tighter visit limits, higher copays, and lower lifetime caps on mental health than on medical care. The 1996 Parity Act began pushing toward equal treatment.",
+ m:"Parity fixes the 'Pay more for the mind' problem."},
+{c:"Legislation",s:"Under the Affordable Care Act, mental health and substance use treatment are classified as:",
+ o:["optional benefits","essential health benefits","experimental treatments","state-only programs"],
+ a:[1],r:"The ACA (2010) made mental health and substance use services essential health benefits and prohibited pre-existing-condition denials, increasing access.",
+ m:"ACA: mental health is Essential, not Extra."},
+{c:"Epidemiology & classification",s:"Why are epidemiologic data such as prevalence and comorbidity important to mental health nursing?",
+ o:["They diagnose individual clients.","They identify how common disorders are and which conditions co-occur, guiding planning and resources.","They replace the DSM-5.","They determine insurance premiums for each client."],
+ a:[1],r:"Epidemiology describes patterns of disorders in populations — how many have them (prevalence), new cases (incidence), and co-occurring conditions (comorbidity) — which guides services and prevention.",
+ m:"Epidemiology = the Big Picture that guides planning."},
+{c:"Epidemiology & classification",s:"A nurse says, \"The DSM-5 classifies the disorder, not the person.\" What does this mean for nursing care?",
+ o:["The nurse can skip individual assessment once a diagnosis is made.","The nurse still assesses the individual's symptoms, strengths, safety, and response to treatment.","Everyone with the same diagnosis receives identical care.","The diagnosis defines the person's identity."],
+ a:[1],r:"Classification systems provide a common language, but each client is an individual. The nurse assesses the whole person, not just the label.",
+ m:"Label the illness, not the human."},
+{c:"PMH nursing",s:"A client on the unit asks the basic-level psychiatric RN for \"something to help me sleep.\" Which actions are within the RN's scope? Select all that apply.",
+ o:["Assess the client's sleep pattern and contributing factors","Teach nonpharmacologic sleep hygiene strategies","Communicate the request to the provider or APRN","Administer a sleep medication if one is ordered","Prescribe a sedative-hypnotic","Give an over-the-counter aid from the supply room without an order"],
+ a:[0,1,2,3],r:"Prescribing is an advanced-practice function. The basic-level RN assesses, administers ordered medications, educates, and communicates the client's needs to the prescriber.",
+ m:"RNs Recommend and Report; APRNs Prescribe."},
+{c:"Theories",s:"According to Freud, which structure of personality deals with reality and mediates between desires and conscience?",
+ o:["Id","Ego","Superego","Unconscious"],
+ a:[1],r:"The ego is the reality-based mediator between the pleasure-seeking id and the moral superego.",
+ m:"Ego = the Executive in the middle."},
+{c:"Theories",s:"A nurse models calm behavior and praises a client each time she uses a coping skill instead of yelling. Which theory guides these interventions?",
+ o:["Behaviorism","Psychoanalytic theory","Cognitive theory","Humanism"],
+ a:[0],r:"Modeling healthy behavior and reinforcing desired behavior are behaviorist techniques based on the idea that behavior is learned from the environment and can be shaped.",
+ m:"Behaviorism: Show it, Reward it, Shape it."},
+{c:"Theories",s:"Which client statement indicates the cognitive therapy goal has been achieved?",
+ o:["\"Everyone always lets me down.\"","\"My friend canceled once — that doesn't mean she doesn't care about me.\"","\"I never do anything right.\"","\"If I'm not perfect, I'm worthless.\""],
+ a:[1],r:"Cognitive therapy helps clients recognize distorted thinking (overgeneralization, all-or-nothing) and replace it with balanced, realistic thoughts.",
+ m:"Realistic thoughts = Cognitive therapy working."},
+{c:"Theories",s:"What is the main purpose of milieu therapy?",
+ o:["To eliminate the need for medication","To use a safe, structured, supportive environment as part of treatment where clients practice skills","To isolate clients from one another","To provide long-term psychoanalysis"],
+ a:[1],r:"Milieu therapy makes the environment therapeutic: safety, structure, routines, staff support, and peer interaction let clients practice communication and coping while reducing anxiety.",
+ m:"Milieu: the setting does the healing."},
+{c:"Treatment settings",s:"Why can entering the mental health care system be confusing compared with physical health care?",
+ o:["Mental health providers are always more expensive.","Many people lack a frame of reference, and stigma, embarrassment, and fear of judgment keep illness hidden.","Physical illness has no clear entry point.","Mental health care requires a court order."],
+ a:[1],r:"Physical care follows a familiar path (see a doctor, get tests, medication, referral). Mental health entry is less clear, and stigma and fear of being judged lead people to hide symptoms.",
+ m:"Stigma hides the door to care."},
+{c:"Treatment settings",s:"Which service does an Assertive Community Treatment team provide?",
+ o:["Court-ordered forensic evaluations","Intensive, coordinated, team-based support delivered in the community for people with serious mental illness","Short-term 1–3 day stabilization","Inpatient locked-unit care"],
+ a:[1],r:"ACT teams coordinate care and services in the community for clients with serious mental illness who have difficulty maintaining stability with standard outpatient care.",
+ m:"ACT brings the Team To the client."},
+{c:"Treatment settings",s:"Which outpatient service offers more specialized care such as therapy, medication management, and case management?",
+ o:["Community mental health clinic","Emergency department","State hospital","Forensic unit"],
+ a:[0],r:"Community clinics provide specialized outpatient services beyond primary care, including therapy, medication management, case management, and support.",
+ m:"Community clinic = specialized care close to home."},
+{c:"Treatment settings",s:"Which emergency psychiatric care model provides psychiatric evaluation to clients who arrive at a general hospital's emergency department?",
+ o:["Mobile crisis team model","Hospital-based consultant model","Comprehensive emergency service model","Partial hospitalization model"],
+ a:[1],r:"In the hospital-based consultant model, psychiatric professionals consult on clients presenting to the hospital or ED. Mobile teams respond in the community; comprehensive services offer dedicated psychiatric emergency care.",
+ m:"Consultant = Comes to the hospital's ED."},
+{c:"Treatment settings",s:"A client with acute psychosis also has uncontrolled diabetes requiring insulin adjustments. Which inpatient setting is most appropriate?",
+ o:["Freestanding private psychiatric hospital","Psychiatric unit within a general hospital","Crisis stabilization unit","Residential treatment facility"],
+ a:[1],r:"A general hospital psychiatric unit is helpful when the client also has significant medical needs, since medical services are on site. Private hospitals are freestanding; crisis units are for brief stays.",
+ m:"Medical + psychiatric needs = General hospital unit."},
+{c:"Admission & rights",s:"Which statements about involuntary admission are correct? Select all that apply.",
+ o:["The client does not agree to hospitalization.","The client must meet legal criteria such as danger to self or others or grave disability.","The client loses all civil rights.","The client retains the right to a timely evaluation and legal counsel.","The team must use the least restrictive care possible."],
+ a:[0,1,3,4],r:"Involuntary clients are admitted without consent because they meet legal safety criteria, but they retain civil and legal rights, including timely evaluation and counsel, and must receive the least restrictive care.",
+ m:"Involuntary admission takes away the exit, not the rights."},
+{c:"Admission & rights",s:"Which items are included in a psychiatric facility's statement of patients' rights? Select all that apply.",
+ o:["Right to be informed of research and to refuse to participate","Right to choose or refuse visitors","Right to send and receive mail","Right to participate in religious worship","Right to leave a locked unit at any moment without evaluation","Right to keep dangerous belongings"],
+ a:[0,1,2,3],r:"Clients have the right to be informed of research and to refuse participation; research and experimental treatments require informed consent.",
+ m:"Research needs a Real yes."},
+{c:"Treatment settings",s:"Which statement about the interdisciplinary psychiatric treatment team is accurate?",
+ o:["The psychiatrist works alone and informs the team afterward.","Care is provided by a team that may include nurses, psychiatrists/APRNs, social workers, therapists, and medical consultants.","Nurses attend meetings but do not contribute assessment data.","Social workers direct all medication decisions."],
+ a:[1],r:"Psychiatric care is team-based: nurses, psychiatrists/APRNs, social workers, therapists, and medical consultants. Nurses, present 24/7, often lead treatment planning.",
+ m:"Team = many disciplines, one plan."},
+{c:"Safety",s:"Which action is the priority when a nurse notices early warning signs that a client may become violent?",
+ o:["Communicate concerns to the team and begin de-escalation","Wait until the client acts out to intervene","Apply restraints preventively","Confront the client loudly to establish control"],
+ a:[0],r:"The nurse has a duty to protect everyone on the unit. Early recognition, team communication, and de-escalation prevent escalation; restraints are a last resort and never preventive.",
+ m:"Notice, Notify, de-escalate — Never restrain 'just in case.'"},
+{c:"Ethics",s:"A client asks whether a medication can cause weight gain. The nurse answers honestly even though it may make the client hesitant. Which principle is demonstrated?",
+ o:["Veracity","Fidelity","Justice","Beneficence"],
+ a:[0],r:"Veracity is telling the truth and providing honest information so the client can make informed choices. Fidelity is keeping promises; justice is fairness; beneficence is doing good.",
+ m:"Veracity = Verbal honesty."},
+{c:"Admission & rights",s:"A client held under an emergency commitment (temporary admission) asks how long she can be kept. Which response is accurate?",
+ o:["\"Indefinitely, until the provider decides.\"","\"For a short, legally defined period for evaluation, after which you must be released or a formal commitment must be pursued.\"","\"There are no time limits on emergency holds.\"","\"Until your family agrees to your release.\""],
+ a:[1],r:"Emergency commitment is a brief, time-limited hold for evaluation of a client in immediate danger. Continued detention requires formal commitment proceedings, and the client may petition for review (writ of habeas corpus).",
+ m:"Emergency hold = short clock, then release or commit."},
+{c:"Admission & rights",s:"Which treatment specifically requires full informed consent before it can be performed on a psychiatric client?",
+ o:["Attending a daily community meeting","Electroconvulsive therapy","Taking routine vital signs","Eating in the dining room"],
+ a:[1],r:"ECT, experimental treatments, and research participation require full informed consent: information, understanding of risks/benefits/alternatives, and voluntary agreement. Routine care does not require formal written consent.",
+ m:"ECT, Experimental, Enrolled in research — the 3 E's need consent."},
+{c:"Restraint & seclusion",s:"A nurse initiates restraints without an order when a client suddenly attacks a peer. Which action is required next?",
+ o:["Nothing further; nurses can restrain without orders.","Obtain a provider order as soon as possible and ensure a face-to-face evaluation within 1 hour.","Write a standing order for future episodes.","Keep the client restrained for the full shift for safety."],
+ a:[1],r:"In an emergency the nurse may initiate restraint or seclusion, but a verbal or written order must be obtained as soon as possible and a face-to-face evaluation completed within 1 hour. Orders are never standing or PRN, and restraint ends as soon as the client is safe.",
+ m:"Emergency first, order fast, face-to-face within the hour."},
+{c:"Restraint & seclusion",s:"A client is in seclusion after assaulting staff. Which monitoring actions are required? Select all that apply.",
+ o:["Keep the client under continuous observation","Assess safety, comfort, and physical needs about every 15–30 minutes","Offer fluids and toileting","Document each assessment","Check on the client once per shift","Leave the client unobserved to avoid stimulation"],
+ a:[0,1,2,3],r:"Restrained clients require continuous observation and assessment at regular, frequent intervals (typically every 15–30 minutes), with each check documented.",
+ m:"15 to 30 — check and chart, never leave them alone."},
+{c:"Legal",s:"A nurse posts on social media, \"Had a rough shift with a famous patient on the psych unit today,\" naming the person. Which torts has the nurse committed? Select all that apply.",
+ o:["Invasion of privacy (breach of confidentiality)","Possible defamation","Battery","False imprisonment","Assault"],
+ a:[0,1],r:"Invasion of privacy and defamation are intentional torts. Confidentiality is a critical patient right protected by HIPAA; only the client can waive it, and social media does not change that. Battery, assault, and false imprisonment involve physical contact, threat, or unlawful confinement.",
+ m:"Post a patient, lose your license — Privacy is the patient's to waive, not yours."}
+];
+
+const SUBJECTS={
+  pain:{title:"Pain Management & Analgesics",sub:"Analgesics (Ch. 10) · Anesthetics (Ch. 11) · Anti-inflammatory & Antigout (Ch. 44)",chapters:"10 · 11 · 44",sets:{A:Q,B:ALT,C:VC}},
+  mh:{title:"Mental Health Nursing",sub:"Mental Health & Illness (Ch. 1) · Theories (Ch. 2) · Treatment Settings (Ch. 4) · Legal & Ethical (Ch. 6)",chapters:"1 · 2 · 4 · 6",sets:{A:MH_A,B:MH_B,C:MH_C}}
+};
+let subj='pain';
+const SETS=()=>SUBJECTS[subj].sets;
 const NEXTSET={A:'B',B:'C',C:'A'};
 
 const bub=document.getElementById('bubbles'),stem=document.getElementById('stem'),opts=document.getElementById('opts'),
@@ -564,13 +943,14 @@ const bub=document.getElementById('bubbles'),stem=document.getElementById('stem'
  results=document.getElementById('results');
 
 let order=[],i=0,sel=new Set(),score=[],missed=[],setKey='A',practice=false;
-const get=qi=>SETS[setKey][qi];
+const get=qi=>SETS()[setKey][qi];
 const eq=(a,b)=>a.size===b.length&&b.every(x=>a.has(x));
 
 function start(list,key,isPractice){
   setKey=key||setKey;practice=!!isPractice;order=list;i=0;score=[];missed=[];
-  document.getElementById('landing').style.display='none';
+  document.getElementById('landing').style.display='none';document.querySelector('header').style.display='';
   document.getElementById('modeTag').textContent=(practice?'Practice set — similar questions · ':'')+'Version '+setKey;
+  document.querySelector('header h1').textContent=SUBJECTS[subj].title;document.querySelector('header p').textContent='30 NCLEX-style items · '+SUBJECTS[subj].sub;
   bub.innerHTML=order.map(()=>'<span></span>').join('');
   results.classList.remove('show');quiz.style.display='';
   render();
@@ -623,12 +1003,14 @@ function finish(){
   document.getElementById('similarNote').style.display=missed.length?'block':'none';
   window.scrollTo({top:0});
 }
-document.getElementById('retake').onclick=()=>start(Q.map((_,k)=>k),setKey,false);
+const all=()=>SETS()[setKey].map((_,k)=>k);
+document.getElementById('retake').onclick=()=>start(all(),setKey,false);
 document.getElementById('missedOnly').onclick=()=>start([...missed],setKey,practice);
 document.getElementById('similar').onclick=()=>start([...missed],NEXTSET[setKey],true);
-const showLanding=()=>{bub.innerHTML='';results.classList.remove('show');quiz.style.display='none';document.getElementById('landing').style.display='block';window.scrollTo({top:0});};
+const showLanding=()=>{document.querySelector('header').style.display='none';bub.innerHTML='';results.classList.remove('show');quiz.style.display='none';document.getElementById('landing').style.display='block';window.scrollTo({top:0});};
 document.getElementById('backHome').onclick=showLanding;
-const pick=e=>{const b=e.target.closest('[data-set]');if(!b)return;e.preventDefault();start(Q.map((_,k)=>k),b.dataset.set,false);};
+const pick=e=>{const sb=e.target.closest('[data-subj]');if(sb){e.preventDefault();subj=sb.dataset.subj;document.querySelectorAll('[data-subj]').forEach(x=>x.classList.toggle('sel',x===sb));document.getElementById('subjLabel').textContent=SUBJECTS[subj].title;document.getElementById('chapLabel').textContent=SUBJECTS[subj].chapters;document.getElementById('versionsBlock').style.display='block';document.getElementById('versionsBlock').scrollIntoView({behavior:'smooth',block:'nearest'});return;}
+  const b=e.target.closest('[data-set]');if(!b)return;e.preventDefault();start(SETS()[b.dataset.set].map((_,k)=>k),b.dataset.set,false);};
 document.getElementById('landing').addEventListener('click',pick);
 document.getElementById('landing').addEventListener('touchend',pick,{passive:false});
 showLanding();
