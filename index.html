@@ -125,11 +125,22 @@
   .catbtn .catn{font-family:Georgia,serif;font-size:.8rem;background:rgba(255,255,255,.22);padding:2px 9px;border-radius:999px;color:#ffffff}
   .catbtn .chev{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #ffffff;transition:transform .15s ease}
   .catbtn[aria-expanded="true"] .chev{transform:rotate(180deg)}
+  .catdiv{margin:20px 2px 16px;border-top:2px dashed rgba(110,31,82,.45)}
+  .catbtn[data-cat="lab"]{background:#ffffff;color:#111111;border-color:#111111;box-shadow:0 3px 0 #555555}
+  .catbtn[data-cat="lab"] b{color:#111111}
+  .catbtn[data-cat="lab"] .catn{background:rgba(0,0,0,.08);color:#111111}
+  .catbtn[data-cat="lab"] .chev{border-top-color:#111111}
+  .catbtn[data-cat="lab"]:active{background:#f2f2f2;box-shadow:0 0 0 #555555}
+  .catbtn[data-cat="lab"]:focus-visible{outline:3px solid #bbbbbb}
   .catbtn:active{transform:translateY(3px);box-shadow:0 0 0 #6e1f52}
   .catbtn:focus-visible{outline:3px solid #f0cfe1;outline-offset:2px}
   .catwrap{margin:0 0 14px;padding:0 0 2px}
   .catwrap .ver{margin-bottom:10px}
   .catwrap .ver:last-child{margin-bottom:0}
+  #guide{margin:0 0 10px;padding:11px 13px;border-radius:10px;background:#fff4d6;border:1.5px solid #e0b43d}
+  #guide .glab{display:block;font-family:Montserrat,sans-serif;font-weight:800;letter-spacing:.06em;font-size:.72rem;color:#8a6a14;margin-bottom:4px}
+  #guide .gcon{display:block;font-family:Georgia,serif;font-size:.95rem;color:#4a3a08;line-height:1.45}
+  #guide .gmn{display:block;margin-top:6px;font-family:Georgia,serif;font-style:italic;font-size:.93rem;color:#6b5410}
   .ver .added{display:block;margin-top:5px;font-family:Georgia,serif;font-style:normal;font-size:.74rem;letter-spacing:.02em;color:#9a6b86}
   .ver.subj.sel .added{color:#f3d7e6}
   #landing .notes{padding:12px 14px 16px;border-top:2px solid #8b2a66}
@@ -215,6 +226,13 @@
         <button class="ver subj" data-subj="exam1nclex"><b>NUR 243 — EXAM 1 NCLEX</b><span>Same areas · harder reasoning</span><i class="added">Added Sep 26, 2026</i></button>
         <button class="ver subj" data-subj="msmid243"><b>NUR 243 &mdash; MED-SURG MIDTERM</b><span>Blueprint-weighted &middot; 4 versions</span><i class="added">Added Oct 9, 2026</i></button>
       </div>
+      <div class="catdiv" role="separator"></div>
+      <button class="catbtn" data-cat="lab" aria-expanded="false" aria-controls="cat-lab"><b>STUDY LAB</b><span class="catn">3</span><span class="chev" aria-hidden="true"></span></button>
+      <div class="catwrap" id="cat-lab" hidden>
+        <button class="ver subj" data-subj="lab5"><b>PHARM QUIZ 5 &mdash; STUDY LAB</b><span>Weak spots &middot; guided review &middot; untimed</span><i class="added">Added Oct 10, 2026</i></button>
+        <button class="ver subj" data-subj="lab241"><b>NUR 241 PHARM MIDTERM &mdash; STUDY LAB</b><span>Weak spots &middot; guided review &middot; untimed</span><i class="added">Added Oct 10, 2026</i></button>
+        <button class="ver subj" data-subj="lab243"><b>NUR 243 MED-SURG MIDTERM &mdash; STUDY LAB</b><span>Weak spots &middot; guided review &middot; untimed</span><i class="added">Added Oct 10, 2026</i></button>
+      </div>
     </div>
     <div id="versionsBlock" style="display:none">
       <div class="choose"><h4>SELECT A MODE</h4></div>
@@ -228,6 +246,8 @@
         <button class="ver" data-set="B"><b>VERSION B</b><span>Same concepts, new scenarios</span></button>
         <button class="ver" data-set="C"><b>VERSION C</b><span>Same concepts, new scenarios</span></button>
         <button class="ver" data-set="N"><b>VERSION NCLEX</b><span>Hardest tier</span></button>
+        <button class="ver" data-set="W"><b>WEAK SPOTS</b><span>Your missed questions</span></button>
+        <button class="ver" data-set="G"><b>GUIDED REVIEW</b><span>Concept first, then the question</span></button>
       </div>
     </div>
     <div class="notes">
@@ -245,6 +265,7 @@
   <main id="quiz" style="display:none">
     <div class="meta"><span>Question <b id="qnum">1</b> of 30</span><span id="timerTag" class="timer" style="display:none"></span><span id="qcat"></span></div>
     <p id="modeTag" style="margin:0 0 6px;font-size:.85rem;font-weight:700;color:#8b2a66"></p>
+    <div id="guide" hidden></div>
     <p class="stem" id="stem"></p>
     <ul class="opts" id="opts"></ul>
     <div class="actions">
@@ -9785,6 +9806,9 @@ const SUBJECTS={
   mh2:{title:"Mental Health 2",short:"Mental Health 2",sub:"Cultural Implications (Ch. 5) · Nursing Process & Standards (Ch. 7) · Therapeutic Relationships (Ch. 8)",chapters:"5 · 7 · 8",sets:{A:M2_A,B:M2_B,C:M2_C},verNotes:{A:"NCLEX-style, single answer",B:"NCLEX-style, new scenarios",C:"All select-all-that-apply"}},
   mh4:{title:"Mental Health Quiz 4",short:"Mental Health 4",sub:"Substance-Related & Addictive Disorders (Ch. 22) \u2014 alcohol \u00b7 opioids \u00b7 stimulants \u00b7 withdrawal \u00b7 CIWA \u00b7 treatment levels",chapters:"22",sets:{A:M4_A,B:M4_B,C:M4_C},verNotes:{A:"NCLEX-style, single answer",B:"NCLEX-style, new scenarios",C:"All select-all-that-apply"}},
   mid209:{title:"Midterm Exam",short:"Midterm Exam",sub:"NUR 209 Mental Health midterm \u2014 anxiety/stress \u00b7 communication \u00b7 psychopharm \u00b7 legal/ethical \u00b7 culture/trauma \u00b7 safety \u00b7 assessment",chapters:"NUR 209 Midterm Blueprint",sets:{A:M209_A,B:M209_B,C:M209_C,N:M209_N},verNotes:{A:"NCLEX-style, single answer",B:"NCLEX-style, new scenarios",C:"All select-all-that-apply",N:"Hardest tier \u00b7 priority, next action, further teaching"}},
+  lab5:{title:"Pharm Quiz 5 \u2014 Study Lab",short:"Pharm 5 Lab",sub:"Untimed review for Pharm Quiz 5 \u2014 drill what you keep missing, or learn concept-first",chapters:"38 \u00b7 39 \u00b7 40",lab:{src:"pharm5"},sets:{W:P5_A,G:P5_A},verNotes:{W:"Your missed questions, worst first \u00b7 untimed",G:"Key fact and mnemonic first, then the question \u00b7 untimed"}},
+  lab241:{title:"NUR 241 Pharm Midterm \u2014 Study Lab",short:"Pharm Midterm Lab",sub:"Untimed review for the NUR 241 Pharm Midterm \u2014 drill what you keep missing, or learn concept-first",chapters:"NUR 241 Midterm",lab:{src:"pmid241"},sets:{W:PMID_A2,G:PMID_A2},verNotes:{W:"Your missed questions, worst first \u00b7 untimed",G:"Key fact and mnemonic first, then the question \u00b7 untimed"}},
+  lab243:{title:"NUR 243 Med-Surg Midterm \u2014 Study Lab",short:"Med-Surg Midterm Lab",sub:"Untimed review for the NUR 243 Med-Surg Midterm \u2014 drill what you keep missing, or learn concept-first",chapters:"NUR 243 Midterm",lab:{src:"msmid243"},sets:{W:MS243_A,G:MS243_A},verNotes:{W:"Your missed questions, worst first \u00b7 untimed",G:"Key fact and mnemonic first, then the question \u00b7 untimed"}},
   pharm3:{title:"Pharm Quiz 3",short:"Pharm Quiz 3",sub:"CNS Stimulants (Ch. 13) · Respiratory Drugs (Ch. 37) · ATI handouts",chapters:"13 · 37",sets:{A:P3_A,B:P3_B,C:P3_C,N:P3_N},verNotes:{A:"NCLEX-style, single answer",B:"NCLEX-style, new scenarios",C:"All select-all-that-apply",N:"Hardest tier \u00b7 priority, next action, further teaching"}},
   pharm3book:{title:"Pharm Quiz 3 — Book Questions",short:"Pharm 3 Book Questions",sub:"Textbook practice questions, Sets 1 & 2, with rationales and mnemonics",chapters:"13 · 37 (book)",sets:{A:P3_BOOK},verNotes:{A:"16 textbook questions in book order"}},
   ms1:{title:"Med-Surg Quiz 1",short:"Med-Surg Quiz 1",sub:"Musculoskeletal (Ch. 68–69) — Osteomyelitis · Osteoporosis · Paget's · OA · RA · Gout · Raynaud's · Fibromyalgia",chapters:"68 · 69",sets:{A:MS1_A,B:MS1_B,C:MS1_C,N:MS1_N},verNotes:{A:"NCLEX-style, single answer",B:"NCLEX-style, new scenarios",C:"All select-all-that-apply",N:"Hardest tier \u00b7 priority, next action, further teaching"}},
@@ -9803,7 +9827,7 @@ const SUBJECTS={
 };
 let subj='pain';
 const SETS=()=>SUBJECTS[subj].sets;
-const VLABEL={A:'A',B:'B',C:'C',N:'NCLEX'};
+const VLABEL={A:'A',B:'B',C:'C',N:'NCLEX',W:'WEAK SPOTS',G:'GUIDED REVIEW'};
 const modeLocked=k=>!!SUBJECTS[k].examOnly&&!SUBJECTS[k].allowStudy;
 const nextSet=k=>{const ks=Object.keys(SUBJECTS[subj].sets);const i=ks.indexOf(k);return ks[(i+1)%ks.length];};
 
@@ -9825,7 +9849,7 @@ function start(list,key,isPractice,isExam){
   clearInterval(timer);const tEl=document.getElementById('timerTag');
   if(exam){timeLeft=order.length*60;tEl.style.display='';tEl.textContent=fmt(timeLeft);timer=setInterval(()=>{timeLeft--;tEl.textContent=fmt(timeLeft);if(timeLeft<=60)tEl.classList.add('warn');if(timeLeft<=0){clearInterval(timer);timesUp();}},1000);}else{tEl.style.display='none';tEl.classList.remove('warn');}
   document.getElementById('landing').style.display='none';document.querySelector('header').style.display='';
-  document.getElementById('modeTag').textContent=(exam?'Exam mode · ':'')+(practice?'Practice set — similar questions · ':'')+SUBJECTS[subj].short+(Object.keys(SUBJECTS[subj].sets).length>1?' — Version '+(VLABEL[setKey]||setKey):'');
+  document.getElementById('modeTag').textContent=(exam?'Exam mode · ':'')+(practice?'Practice set — similar questions · ':'')+SUBJECTS[subj].short+(SUBJECTS[subj].lab?' — '+(VLABEL[setKey]||setKey):Object.keys(SUBJECTS[subj].sets).length>1?' — Version '+(VLABEL[setKey]||setKey):'');
   document.querySelector('header h1').textContent=SUBJECTS[subj].title;document.querySelector('header p').textContent=order.length+' items · '+SUBJECTS[subj].sub;
   bub.innerHTML=order.map(()=>'<span></span>').join('');
   results.classList.remove('show');quiz.style.display='';
@@ -9836,6 +9860,10 @@ function render(){
   const sata=q.a.length>1;
   qnum.textContent=i+1;document.querySelector('.meta span').innerHTML=`Question <b>${i+1}</b> of ${order.length}`;
   qcat.innerHTML=sata?`<span class="sata">Select all that apply</span>`:q.c;
+  (function(){const g=document.getElementById('guide');
+   if(SUBJECTS[subj].lab&&setKey==='G'){g.hidden=false;
+     g.innerHTML='<span class="glab">STUDY THIS FIRST \u2014 '+q.c+'</span><span class="gcon">'+q.r+'</span><span class="gmn">'+q.m+'</span>';}
+   else {g.hidden=true;g.innerHTML='';}})();
   stem.textContent=q.s;
   opts.innerHTML='';
   shuffle(q.o.map((_,k)=>k)).forEach(k=>{const t=q.o[k];
@@ -9893,7 +9921,7 @@ function finish(timedOut){
   const M=P.miss[subj]||{};const weak=Object.entries(M).map(([qi,[m,t]])=>({qi:+qi,m,t,rate:m/t})).filter(x=>x.m>0).sort((a,b)=>b.rate-a.rate||b.m-a.m).slice(0,5);
   document.getElementById('weak').innerHTML=weak.length?weak.map(x=>`<li><span>${SETS().A[x.qi].c} — <i>${SETS().A[x.qi].m}</i></span><span class="cnt">missed ${x.m} of ${x.t}</span></li>`).join(''):'<li>No misses recorded yet for this subject.</li>';
   document.getElementById('missedOnly').disabled=missed.length===0;
-  const multi=Object.keys(SUBJECTS[subj].sets).length>1;document.getElementById('similar').disabled=missed.length===0||!multi;document.getElementById('similar').parentElement.style.display=multi?'':'none';
+  const multi=Object.keys(SUBJECTS[subj].sets).length>1;document.getElementById('similar').disabled=missed.length===0||!multi;document.getElementById('similar').parentElement.style.display=(multi&&!SUBJECTS[subj].lab)?'':'none';
   document.getElementById('similarNote').style.display=(missed.length&&multi)?'block':'none';
   window.scrollTo({top:0});
 }
@@ -9910,9 +9938,25 @@ const showLanding=()=>{const c=document.querySelector('.ver.subj.sel')?catOf(sub
 document.getElementById('backHome').onclick=showLanding;
 const openCat=id=>{document.querySelectorAll('.catbtn').forEach(b=>{const on=b.dataset.cat===id;b.setAttribute('aria-expanded',on?'true':'false');document.getElementById('cat-'+b.dataset.cat).hidden=!on;});};
 const pick=e=>{const cb=e.target.closest('[data-cat]');if(cb){e.preventDefault();const id=cb.dataset.cat,isOpen=cb.getAttribute('aria-expanded')==='true';if(isOpen){cb.setAttribute('aria-expanded','false');document.getElementById('cat-'+id).hidden=true;}else{openCat(id);}return;}
-  const sb=e.target.closest('[data-subj]');if(sb){e.preventDefault();subj=sb.dataset.subj;document.querySelectorAll('[data-subj]').forEach(x=>x.classList.toggle('sel',x===sb));document.getElementById('subjLabel').textContent=SUBJECTS[subj].title;document.getElementById('chapLabel').textContent=SUBJECTS[subj].chapters;const DEF={A:'Core practice set',B:'Same concepts, new scenarios',C:'Same concepts, new scenarios',N:'Hardest tier'};const setsHere=Object.keys(SUBJECTS[subj].sets);document.querySelectorAll('[data-set]').forEach(vb=>{const has=setsHere.includes(vb.dataset.set);vb.style.display=has?'':'none';if(!has)return;vb.querySelector('b').textContent=setsHere.length>1?SUBJECTS[subj].short+' — VERSION '+(VLABEL[vb.dataset.set]||vb.dataset.set):SUBJECTS[subj].short+(SUBJECTS[subj].examOnly?' — START EXAM':' — TAKE THE TEST');vb.querySelector('span').textContent=(SUBJECTS[subj].verNotes||DEF)[vb.dataset.set];});var vBlk=document.getElementById('versionsBlock');sb.insertAdjacentElement('afterend',vBlk);vBlk.style.display='block';document.querySelector('.modes').style.display=modeLocked(subj)?'none':'';document.querySelector('.modes').previousElementSibling.style.display=modeLocked(subj)?'none':'';sb.scrollIntoView({behavior:'smooth',block:'nearest'});return;}
+  const sb=e.target.closest('[data-subj]');if(sb){e.preventDefault();subj=sb.dataset.subj;document.querySelectorAll('[data-subj]').forEach(x=>x.classList.toggle('sel',x===sb));document.getElementById('subjLabel').textContent=SUBJECTS[subj].title;document.getElementById('chapLabel').textContent=SUBJECTS[subj].chapters;const DEF={A:'Core practice set',B:'Same concepts, new scenarios',C:'Same concepts, new scenarios',N:'Hardest tier'};const setsHere=Object.keys(SUBJECTS[subj].sets);document.querySelectorAll('[data-set]').forEach(vb=>{const has=setsHere.includes(vb.dataset.set);vb.style.display=has?'':'none';if(!has)return;vb.querySelector('b').textContent=SUBJECTS[subj].lab?SUBJECTS[subj].short+' — '+(VLABEL[vb.dataset.set]||vb.dataset.set):setsHere.length>1?SUBJECTS[subj].short+' — VERSION '+(VLABEL[vb.dataset.set]||vb.dataset.set):SUBJECTS[subj].short+(SUBJECTS[subj].examOnly?' — START EXAM':' — TAKE THE TEST');vb.querySelector('span').textContent=(SUBJECTS[subj].verNotes||DEF)[vb.dataset.set];});var vBlk=document.getElementById('versionsBlock');sb.insertAdjacentElement('afterend',vBlk);vBlk.style.display='block';document.querySelector('.modes').style.display=modeLocked(subj)?'none':'';document.querySelector('.modes').previousElementSibling.style.display=modeLocked(subj)?'none':'';sb.scrollIntoView({behavior:'smooth',block:'nearest'});return;}
   const mb=e.target.closest('[data-mode]');if(mb){e.preventDefault();document.querySelectorAll('[data-mode]').forEach(x=>x.classList.toggle('sel',x===mb));return;}
-  const b=e.target.closest('[data-set]');if(!b)return;e.preventDefault();const isExam=modeLocked(subj)||document.querySelector('[data-mode].sel').dataset.mode==='exam';start(SETS()[b.dataset.set].map((_,k)=>k),b.dataset.set,false,isExam);};
+  const b=e.target.closest('[data-set]');if(!b)return;e.preventDefault();
+  const LB=SUBJECTS[subj].lab;
+  if(LB){
+    const arr=SETS()[b.dataset.set]||[];const P=store.get();const mm=(P.miss||{});
+    const src=mm[LB.src]||{},own=mm[subj]||{};
+    let ord;
+    if(b.dataset.set==='W'){
+      const rows=arr.map((_,k)=>{const a=src[k]||[0,0],c=own[k]||[0,0];const miss=a[0]+c[0],seen=a[1]+c[1];
+        return {k:k,miss:miss,seen:seen,rate:seen?miss/seen:0};}).filter(x=>x.miss>0);
+      rows.sort((x,y)=>y.rate-x.rate||y.miss-x.miss||x.k-y.k);
+      ord=rows.map(x=>x.k);
+      if(!ord.length){ord=arr.map((_,k)=>k);}
+    } else { ord=arr.map((_,k)=>k); }
+    start(ord,b.dataset.set,false,false);
+    return;
+  }
+  const isExam=modeLocked(subj)||document.querySelector('[data-mode].sel').dataset.mode==='exam';start(SETS()[b.dataset.set].map((_,k)=>k),b.dataset.set,false,isExam);};
 document.getElementById('landing').addEventListener('click',pick);
 document.getElementById('landing').addEventListener('touchend',pick,{passive:false});
 showLanding();
